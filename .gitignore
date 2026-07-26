@@ -1,1 +1,4 @@
 bin/
+simulator/vendor/
+tmp/
+*.joblib

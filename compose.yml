@@ -7,20 +7,38 @@ services:
         - conf:/config
         - ${PWD}/simulator/cmd/scheduler:/host-config:ro
       command: sh -c "cp -rf /host-config/* /config/"
+  
   simulator-scheduler:
-    image: registry.k8s.io/scheduler-simulator/debuggable-scheduler:v0.4.0
-    container_name: simulator-scheduler
-    environment:
-      - KUBECONFIG=/config/kubeconfig.yaml
-    volumes:
-      - conf:/config
-    depends_on:
-      - init-container
-      - simulator-cluster
-    restart: always
-    tty: true
-    networks:
-      - simulator-internal-network
+     build:
+       context: ./simulator
+       dockerfile: cmd/scheduler/Dockerfile
+     container_name: simulator-scheduler
+     environment:
+       - KUBECONFIG=/config/kubeconfig.yaml
+     depends_on:
+       - init-container
+       - simulator-cluster
+     volumes:
+       - conf:/config
+     restart: always
+     tty: true
+     networks:
+       - simulator-internal-network
+   
+#  simulator-scheduler:
+#    image: registry.k8s.io/scheduler-simulator/debuggable-scheduler:v0.4.0
+#    container_name: simulator-scheduler
+#    environment:
+#      - KUBECONFIG=/config/kubeconfig.yaml
+#    volumes:
+#      - conf:/config
+#    depends_on:
+#      - init-container
+#      - simulator-cluster
+#    restart: always
+#    tty: true
+#    networks:
+#      - simulator-internal-network
   simulator-server:
     image: registry.k8s.io/scheduler-simulator/simulator-backend:v0.4.0
     container_name: simulator-server
@@ -48,7 +66,7 @@ services:
       - BASE_URL=http://${SIMULATOR_EXTERNAL_IP:-localhost}:1212
       - KUBE_API_SERVER_URL=http://${SIMULATOR_EXTERNAL_IP:-localhost}:3131
     ports:
-    - "3000:3000"
+    - "3500:3000"
     tty: true
   simulator-cluster:
     image: registry.k8s.io/kwok/cluster:v0.6.0-k8s.v1.30.2

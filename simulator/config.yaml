@@ -23,12 +23,13 @@ corsAllowedOriginList:
 # "Continuous syncing cluster's resources" and "Replaying cluster's events".
 # This variable is used to find Kubeconfig required to access your
 # cluster for importing resources to scheduler simulator.
-kubeConfig: "/kubeconfig.yaml"
+#kubeConfig: "/kubeconfig.yaml"
+kubeConfig: "/tmp/kwok-kubeconfig.yaml"
 
 # This is the url of kube-apiserver.
 # This variable is used to connect to the user cluster's kube-apiserver.
-kubeApiServerUrl: ""
-
+#kubeApiServerUrl: ""
+kubeApiServerUrl: "https://127.0.0.1:32765"
 # The path to a KubeSchedulerConfiguration file.
 # If passed, the simulator will start the scheduler
 # with that configuration. Or, if you use web UI,
