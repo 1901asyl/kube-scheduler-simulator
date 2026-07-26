@@ -1,0 +1,46 @@
+bench-tiny-xs6t9               profile=tiny     -> PENDING
+bench-tiny-lfclc               profile=tiny     -> PENDING
+bench-tiny-zhj8f               profile=tiny     -> PENDING
+bench-tiny-bjc8t               profile=tiny     -> PENDING
+bench-tiny-jjzjf               profile=tiny     -> PENDING
+bench-tiny-9qlpm               profile=tiny     -> PENDING
+bench-tiny-zpmbd               profile=tiny     -> PENDING
+bench-tiny-zrc69               profile=tiny     -> PENDING
+bench-small-2mgvm              profile=small    -> PENDING
+bench-small-pmv4d              profile=small    -> PENDING
+bench-small-vkgqd              profile=small    -> PENDING
+bench-small-74b6w              profile=small    -> PENDING
+bench-small-qwq76              profile=small    -> PENDING
+bench-small-9vfkm              profile=small    -> PENDING
+bench-small-dqtdw              profile=small    -> PENDING
+bench-small-z6hlm              profile=small    -> PENDING
+bench-medium-dnsfz             profile=medium   -> PENDING
+bench-medium-jq8sm             profile=medium   -> PENDING
+bench-medium-f5mfr             profile=medium   -> PENDING
+bench-medium-8rln2             profile=medium   -> PENDING
+bench-medium-rsxg4             profile=medium   -> PENDING
+bench-medium-kdnc5             profile=medium   -> PENDING
+bench-medium-fr4d9             profile=medium   -> PENDING
+bench-medium-ct58f             profile=medium   -> PENDING
+bench-large-9qw69              profile=large    -> PENDING
+bench-large-clwwk              profile=large    -> PENDING
+bench-large-8wsx6              profile=large    -> PENDING
+bench-large-d9srx              profile=large    -> PENDING
+bench-large-dhv9k              profile=large    -> PENDING
+bench-large-5wdch              profile=large    -> PENDING
+bench-large-22xgv              profile=large    -> PENDING
+bench-large-ww7bz              profile=large    -> PENDING
+bench-xlarge-m8h6b             profile=xlarge   -> PENDING
+bench-xlarge-dvkf9             profile=xlarge   -> PENDING
+bench-xlarge-vx8p2             profile=xlarge   -> PENDING
+bench-xlarge-pzqqd             profile=xlarge   -> PENDING
+bench-xlarge-tqc2c             profile=xlarge   -> PENDING
+bench-xlarge-fz6bj             profile=xlarge   -> PENDING
+bench-xlarge-7zzxp             profile=xlarge   -> PENDING
+bench-xlarge-wgjwf             profile=xlarge   -> PENDING
+
+Готово: 0/40 подов запланировано.
+Результаты: results_overhead/overhead_aiscore_noop_results.csv
+Метрики балансировки: results_overhead/overhead_aiscore_noop_balance.json
+  CPU utilization std=0.0000 mean=0.0000
+  Memory utilization std=0.0000 mean=0.0000

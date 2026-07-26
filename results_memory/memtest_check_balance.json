@@ -1,0 +1,20 @@
+{
+  "per_node": {
+    "node-pm8wl": {
+      "cpu_utilization": 0.8625,
+      "memory_utilization": 0.8203
+    },
+    "node-rqqln": {
+      "cpu_utilization": 0.9542,
+      "memory_utilization": 0.9479
+    },
+    "node-vvvbj": {
+      "cpu_utilization": 0.9875,
+      "memory_utilization": 0.9805
+    }
+  },
+  "cpu_utilization_std": 0.0529,
+  "memory_utilization_std": 0.0691,
+  "cpu_utilization_mean": 0.9347,
+  "memory_utilization_mean": 0.9162
+}

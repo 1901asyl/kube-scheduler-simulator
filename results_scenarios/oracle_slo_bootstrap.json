@@ -1,0 +1,272 @@
+{
+  "config": {
+    "pool_csv": [
+      "results_scenarios/heterogeneous_mixed_results.csv",
+      "results_scenarios/homogeneous_medium_results.csv"
+    ],
+    "sample_size": 40,
+    "z_trials": 30,
+    "seed": 42,
+    "out": "results_scenarios/oracle_slo_bootstrap.json"
+  },
+  "trials": [
+    {
+      "trial": 0,
+      "cpu_util_stddev": 0.0012991865926298362,
+      "mem_util_stddev": 0.004296655788459933,
+      "cpu_jains_fairness": 0.9999899964487391,
+      "mem_jains_fairness": 0.9998864609292363,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 1,
+      "cpu_util_stddev": 0.0009820927516479793,
+      "mem_util_stddev": 0.0012276159395599871,
+      "cpu_jains_fairness": 0.9999956234216962,
+      "mem_jains_fairness": 0.99999311586346,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 2,
+      "cpu_util_stddev": 0.0019641855032959846,
+      "mem_util_stddev": 0.007542598609801555,
+      "cpu_jains_fairness": 0.9999830005694811,
+      "mem_jains_fairness": 0.99974353029697,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 3,
+      "cpu_util_stddev": 0.0,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 1.0,
+      "mem_jains_fairness": 0.9999514692679139,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 4,
+      "cpu_util_stddev": 0.0014731391274719426,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 0.9999943507133638,
+      "mem_jains_fairness": 0.9999640920679378,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 5,
+      "cpu_util_stddev": 0.0009820927516479793,
+      "mem_util_stddev": 0.0012276159395599871,
+      "cpu_jains_fairness": 0.9999961526845604,
+      "mem_jains_fairness": 0.9999939508872535,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 6,
+      "cpu_util_stddev": 0.002551551815399135,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 0.9999699722243075,
+      "mem_jains_fairness": 0.9999368806412927,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 7,
+      "cpu_util_stddev": 0.0012991865926298362,
+      "mem_util_stddev": 0.0032479664815746,
+      "cpu_jains_fairness": 0.9999932013719631,
+      "mem_jains_fairness": 0.9999570624587877,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 8,
+      "cpu_util_stddev": 0.002598373185259697,
+      "mem_util_stddev": 0.0026755269110108476,
+      "cpu_jains_fairness": 0.9999705098633976,
+      "mem_jains_fairness": 0.9999684240352922,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 9,
+      "cpu_util_stddev": 0.0009820927516479793,
+      "mem_util_stddev": 0.001227615939559961,
+      "cpu_jains_fairness": 0.999997536348104,
+      "mem_jains_fairness": 0.9999961312511729,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 10,
+      "cpu_util_stddev": 0.0017704928866641987,
+      "mem_util_stddev": 0.003247966481574605,
+      "cpu_jains_fairness": 0.9999905987680772,
+      "mem_jains_fairness": 0.9999679586208473,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 11,
+      "cpu_util_stddev": 0.0009820927516479793,
+      "mem_util_stddev": 0.0024552318791199743,
+      "cpu_jains_fairness": 0.9999965735705795,
+      "mem_jains_fairness": 0.9999785008653401,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 12,
+      "cpu_util_stddev": 0.001770492886664148,
+      "mem_util_stddev": 0.003247966481574605,
+      "cpu_jains_fairness": 0.9999904384591651,
+      "mem_jains_fairness": 0.9999671687502787,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 13,
+      "cpu_util_stddev": 0.002551551815399135,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 0.9999573351537001,
+      "mem_jains_fairness": 0.9999099220826014,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 14,
+      "cpu_util_stddev": 0.00255155181539918,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 0.9999805214410238,
+      "mem_jains_fairness": 0.9999590524742542,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 15,
+      "cpu_util_stddev": 0.0009820927516479793,
+      "mem_util_stddev": 0.001227615939559961,
+      "cpu_jains_fairness": 0.9999965914397415,
+      "mem_jains_fairness": 0.999994642708861,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 16,
+      "cpu_util_stddev": 0.00255155181539918,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 0.9999824679821524,
+      "mem_jains_fairness": 0.9999631614816452,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 17,
+      "cpu_util_stddev": 0.0,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 1.0,
+      "mem_jains_fairness": 0.9999514692679139,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 18,
+      "cpu_util_stddev": 0.00354098577332831,
+      "mem_util_stddev": 0.002213116108330214,
+      "cpu_jains_fairness": 0.9999653325013135,
+      "mem_jains_fairness": 0.9999863277850433,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 19,
+      "cpu_util_stddev": 0.0029462782549439376,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 0.9999690008989738,
+      "mem_jains_fairness": 0.9999514692679139,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 20,
+      "cpu_util_stddev": 0.0025983731852596724,
+      "mem_util_stddev": 0.0026755269110108264,
+      "cpu_jains_fairness": 0.9999832417615301,
+      "mem_jains_fairness": 0.9999820998479899,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 21,
+      "cpu_util_stddev": 0.0014731391274719688,
+      "mem_util_stddev": 0.003682847818679935,
+      "cpu_jains_fairness": 0.9999911358126465,
+      "mem_jains_fairness": 0.9999434165110621,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 22,
+      "cpu_util_stddev": 0.001299186592629856,
+      "mem_util_stddev": 0.003247966481574605,
+      "cpu_jains_fairness": 0.9999943275170123,
+      "mem_jains_fairness": 0.999964275689607,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 23,
+      "cpu_util_stddev": 0.0025983731852596724,
+      "mem_util_stddev": 0.0016239832407872977,
+      "cpu_jains_fairness": 0.9999733657510192,
+      "mem_jains_fairness": 0.9999895418040238,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 24,
+      "cpu_util_stddev": 0.0012991865926298164,
+      "mem_util_stddev": 0.0044262322166603914,
+      "cpu_jains_fairness": 0.9999958241053518,
+      "mem_jains_fairness": 0.99995080928191,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 25,
+      "cpu_util_stddev": 0.0012991865926298362,
+      "mem_util_stddev": 0.0037336481193761322,
+      "cpu_jains_fairness": 0.9999888593130175,
+      "mem_jains_fairness": 0.9999050993699367,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 26,
+      "cpu_util_stddev": 0.0017704928866641623,
+      "mem_util_stddev": 0.0044262322166603914,
+      "cpu_jains_fairness": 0.9999900068990831,
+      "mem_jains_fairness": 0.9999367253417443,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 27,
+      "cpu_util_stddev": 0.001473139127471995,
+      "mem_util_stddev": 0.00318943976924893,
+      "cpu_jains_fairness": 0.9999929600022528,
+      "mem_jains_fairness": 0.9999664682706011,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 28,
+      "cpu_util_stddev": 0.0012991865926298164,
+      "mem_util_stddev": 0.009528862152821255,
+      "cpu_jains_fairness": 0.9999937695119971,
+      "mem_jains_fairness": 0.999655707153934,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 29,
+      "cpu_util_stddev": 0.0009820927516479793,
+      "mem_util_stddev": 0.002455231879119948,
+      "cpu_jains_fairness": 0.9999958234662721,
+      "mem_jains_fairness": 0.999973263551202,
+      "stage4_status": "Optimal"
+    }
+  ],
+  "cpu_summary": {
+    "mean": 0.0016623782819006397,
+    "stddev_across_trials": 0.0008225390351381415,
+    "p5": 0.00044194173824159085,
+    "p50": 0.0014731391274719558,
+    "p95": 0.0027897209735860285,
+    "min": 0.0,
+    "max": 0.00354098577332831
+  },
+  "mem_summary": {
+    "mean": 0.003409674861835514,
+    "stddev_across_trials": 0.0016820081019525593,
+    "p5": 0.0012276159395599726,
+    "p50": 0.00346540715012727,
+    "p95": 0.006140233732888023,
+    "min": 0.001227615939559961,
+    "max": 0.009528862152821255
+  }
+}

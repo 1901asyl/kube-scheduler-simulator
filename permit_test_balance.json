@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.2030249634957956,
+  "mem_util_stddev": 0.20082310970788922,
+  "cpu_util_mean": 0.1638888888888889,
+  "mem_util_mean": 0.1623263888888889,
+  "per_node": {
+    "node-7tfdv": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-r52nz": {
+      "cpu_util": 0.041666666666666664,
+      "mem_util": 0.041666666666666664
+    },
+    "node-wnxkd": {
+      "cpu_util": 0.45,
+      "mem_util": 0.4453125
+    }
+  }
+}

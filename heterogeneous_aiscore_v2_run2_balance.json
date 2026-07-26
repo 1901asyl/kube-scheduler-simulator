@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.3933045442226327,
+  "mem_util_stddev": 0.39430748796051085,
+  "cpu_util_mean": 0.48194444444444445,
+  "mem_util_mean": 0.4756944444444445,
+  "per_node": {
+    "node-2q8mc": {
+      "cpu_util": 0.03125,
+      "mem_util": 0.03125
+    },
+    "node-ffr6d": {
+      "cpu_util": 0.9895833333333334,
+      "mem_util": 0.9895833333333334
+    },
+    "node-zshcf": {
+      "cpu_util": 0.425,
+      "mem_util": 0.40625
+    }
+  }
+}

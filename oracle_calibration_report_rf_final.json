@@ -1,0 +1,35 @@
+{
+  "n_total": 120,
+  "overall_oracle_match_rate": 0.35833333333333334,
+  "reliability_vs_oracle": [
+    {
+      "bin": [
+        0.65,
+        0.88
+      ],
+      "n": 55,
+      "mean_confidence": 0.745,
+      "oracle_match_rate": 0.4,
+      "wilson_95ci": [
+        0.281,
+        0.532
+      ]
+    },
+    {
+      "bin": [
+        0.88,
+        1.0
+      ],
+      "n": 65,
+      "mean_confidence": 0.991,
+      "oracle_match_rate": 0.323,
+      "wilson_95ci": [
+        0.222,
+        0.444
+      ]
+    }
+  ],
+  "fallback_threshold": 0.6,
+  "fallback_would_trigger_on": 0,
+  "caveat": "\u041c\u0430\u043b\u043e\u0435 N \u043d\u0430 \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0439 (\u043e\u0431\u044b\u0447\u043d\u043e 40 \u043f\u043e\u0434\u043e\u0432 x 3 \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u044f = ~120 \u0440\u0435\u0448\u0435\u043d\u0438\u0439, \u043c\u0438\u043d\u0443\u0441 \u043d\u0435\u0440\u0430\u0437\u043c\u0435\u0449\u0451\u043d\u043d\u044b\u0435). Wilson CI \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d \u0432\u043c\u0435\u0441\u0442\u043e \u043d\u043e\u0440\u043c\u0430\u043b\u044c\u043d\u043e\u0433\u043e \u043f\u0440\u0438\u0431\u043b\u0438\u0436\u0435\u043d\u0438\u044f. \u042d\u0442\u043e pilot-\u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u0435, \u043d\u0435 \u0437\u0430\u043c\u0435\u043d\u044f\u0435\u0442 \u043a\u0440\u0443\u043f\u043d\u043e\u043c\u0430\u0441\u0448\u0442\u0430\u0431\u043d\u0443\u044e \u043a\u0430\u043b\u0438\u0431\u0440\u043e\u0432\u043a\u0443 \u0418\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430 1 (compute_calibration.py)."
+}

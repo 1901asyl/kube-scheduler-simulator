@@ -1,0 +1,30 @@
+{
+  "metric": "cpu_util_stddev",
+  "files": [
+    "heterogeneous_baseline_run1_balance.json",
+    "heterogeneous_baseline_run2_balance.json",
+    "heterogeneous_baseline_run3_balance.json",
+    "heterogeneous_baseline_run4_balance.json",
+    "heterogeneous_baseline_run5_balance.json",
+    "heterogeneous_baseline_run6_balance.json",
+    "heterogeneous_baseline_run7_balance.json",
+    "heterogeneous_baseline_run8_balance.json"
+  ],
+  "per_run_values": [
+    0.09955412751641969,
+    0.10003736763249775,
+    0.10003736763249775,
+    0.09588364218940672,
+    0.09014814410625696,
+    0.09014814410625696,
+    0.09588364218940672,
+    0.09014814410625696
+  ],
+  "n_runs": 8,
+  "mean": 0.09523007243487494,
+  "sem": 0.0015993855965546072,
+  "ci_confidence": 0.95,
+  "ci_low": 0.09144812646561372,
+  "ci_high": 0.09901201840413616,
+  "method": "t-interval (Student's t, NOT Wilson \u2014 \u043d\u0435\u043f\u0440\u0435\u0440\u044b\u0432\u043d\u0430\u044f \u043c\u0435\u0442\u0440\u0438\u043a\u0430, \u043d\u0435 \u043f\u0440\u043e\u043f\u043e\u0440\u0446\u0438\u044f)"
+}

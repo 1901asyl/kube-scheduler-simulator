@@ -1,0 +1,24 @@
+{
+  "cpu_util_stddev": 0.0,
+  "mem_util_stddev": 0.0,
+  "cpu_util_mean": 0.0,
+  "mem_util_mean": 0.0,
+  "per_node": {
+    "node-8r542": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-9h6bc": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-g55j9": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-z9j9j": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    }
+  }
+}

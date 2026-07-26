@@ -1,0 +1,20 @@
+{
+  "per_node": {
+    "node-48x22": {
+      "cpu_utilization": 0.6417,
+      "memory_utilization": 0.6354
+    },
+    "node-cr6mj": {
+      "cpu_utilization": 0.7219,
+      "memory_utilization": 0.7148
+    },
+    "node-mglsh": {
+      "cpu_utilization": 0.4813,
+      "memory_utilization": 0.4766
+    }
+  },
+  "cpu_utilization_std": 0.1,
+  "memory_utilization_std": 0.0991,
+  "cpu_utilization_mean": 0.6149,
+  "memory_utilization_mean": 0.6089
+}

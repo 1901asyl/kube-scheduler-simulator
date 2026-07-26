@@ -1,0 +1,30 @@
+{
+  "metric": "cpu_util_stddev",
+  "files": [
+    "post_failure_baseline_run1_balance.json",
+    "post_failure_baseline_run2_balance.json",
+    "post_failure_baseline_run3_balance.json",
+    "post_failure_baseline_run4_balance.json",
+    "post_failure_baseline_run5_balance.json",
+    "post_failure_baseline_run6_balance.json",
+    "post_failure_baseline_run7_balance.json",
+    "post_failure_baseline_run8_balance.json"
+  ],
+  "per_run_values": [
+    0.0,
+    0.0,
+    0.00833333333333336,
+    0.0,
+    0.0,
+    0.0,
+    0.00833333333333336,
+    0.0
+  ],
+  "n_runs": 8,
+  "mean": 0.00208333333333334,
+  "sem": 0.0013638618139749565,
+  "ci_confidence": 0.95,
+  "ci_low": -0.0011416873878131685,
+  "ci_high": 0.005308354054479848,
+  "method": "t-interval (Student's t, NOT Wilson \u2014 \u043d\u0435\u043f\u0440\u0435\u0440\u044b\u0432\u043d\u0430\u044f \u043c\u0435\u0442\u0440\u0438\u043a\u0430, \u043d\u0435 \u043f\u0440\u043e\u043f\u043e\u0440\u0446\u0438\u044f)"
+}

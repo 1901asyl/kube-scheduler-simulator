@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.0,
+  "mem_util_stddev": 0.0,
+  "cpu_util_mean": 0.0,
+  "mem_util_mean": 0.0,
+  "per_node": {
+    "node-2hsqf": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-2v5w7": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-v7v2c": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    }
+  }
+}

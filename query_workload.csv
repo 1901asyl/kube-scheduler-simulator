@@ -1,0 +1,2945 @@
+query_id,variant,scale_factor,n_sales_rows,sql_text,exec_time_ms
+q01_simple_filter,0,1,2000,SELECT * FROM sales WHERE quantity > 10,1.2451094999974543
+q02_filter_region,0,1,2000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",1.3893380000027378
+q03_single_join_agg,0,1,2000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",2.1217759999956343
+q04_two_joins,0,1,2000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.3607324999943557
+q05_three_joins_having,0,1,2000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.9186949999910894
+q06_subquery_filter,0,1,2000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",1.5358905000013579
+q07_correlated_subquery,0,1,2000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.8584789999991358
+q08_four_joins_full,0,1,2000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.706866499994078
+q09_window_function,0,1,2000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",3.777430500001344
+q10_distinct_multi_join,0,1,2000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.7323739999994814
+q01_simple_filter,1,1,2000,SELECT * FROM sales WHERE quantity > 10,0.9275594999920145
+q02_filter_region,1,1,2000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'south'",2.845013000005281
+q03_single_join_agg,1,1,2000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2917514999983837
+q04_two_joins,1,1,2000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.8090405000066312
+q05_three_joins_having,1,1,2000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.1557199999975296
+q06_subquery_filter,1,1,2000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",1.296585999995159
+q07_correlated_subquery,1,1,2000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.7748774999972738
+q08_four_joins_full,1,1,2000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.6810910000019135
+q09_window_function,1,1,2000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",3.66273150000751
+q10_distinct_multi_join,1,1,2000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.7925870000041755
+q01_simple_filter,2,1,2000,SELECT * FROM sales WHERE quantity > 10,0.9689935000025685
+q02_filter_region,2,1,2000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",1.4545164999972826
+q03_single_join_agg,2,1,2000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2965730000047415
+q04_two_joins,2,1,2000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",1.9840480000041794
+q05_three_joins_having,2,1,2000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.393485500000736
+q06_subquery_filter,2,1,2000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",1.2869315000045844
+q07_correlated_subquery,2,1,2000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.7719105000040258
+q08_four_joins_full,2,1,2000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.777121500005421
+q09_window_function,2,1,2000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",3.9737075000019217
+q10_distinct_multi_join,2,1,2000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.5660334999978431
+q01_simple_filter,3,1,2000,SELECT * FROM sales WHERE quantity > 10,1.004479000002334
+q02_filter_region,3,1,2000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",1.2009254999938435
+q03_single_join_agg,3,1,2000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.421233499996788
+q04_two_joins,3,1,2000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.9251430000011283
+q05_three_joins_having,3,1,2000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.127422499995646
+q06_subquery_filter,3,1,2000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",1.3128909999906568
+q07_correlated_subquery,3,1,2000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.6983674999977438
+q08_four_joins_full,3,1,2000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.530840999997565
+q09_window_function,3,1,2000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",3.399214999987521
+q10_distinct_multi_join,3,1,2000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",1.5220319999968979
+q01_simple_filter,4,1,2000,SELECT * FROM sales WHERE quantity > 10,0.8601950000013403
+q02_filter_region,4,1,2000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",0.9214654999993854
+q03_single_join_agg,4,1,2000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.1556665000043154
+q04_two_joins,4,1,2000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",1.7655715000017835
+q05_three_joins_having,4,1,2000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.8912209999987226
+q06_subquery_filter,4,1,2000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",1.6705835000010438
+q07_correlated_subquery,4,1,2000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",2.0735274999950093
+q08_four_joins_full,4,1,2000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.4187660000005735
+q09_window_function,4,1,2000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",4.856173999996827
+q10_distinct_multi_join,4,1,2000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",1.7980220000026748
+q01_simple_filter,5,1,2000,SELECT * FROM sales WHERE quantity > 10,1.0070690000034688
+q02_filter_region,5,1,2000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",1.202261999999621
+q03_single_join_agg,5,1,2000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.375922499995852
+q04_two_joins,5,1,2000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",1.92580899999939
+q05_three_joins_having,5,1,2000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.6099439999995866
+q06_subquery_filter,5,1,2000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",1.6513475000010658
+q07_correlated_subquery,5,1,2000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.82785650000028
+q08_four_joins_full,5,1,2000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.638091499998609
+q09_window_function,5,1,2000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'toys'",3.713585000006958
+q10_distinct_multi_join,5,1,2000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'online'",1.6269500000021253
+q01_simple_filter,6,1,2000,SELECT * FROM sales WHERE quantity > 10,0.9558875000053035
+q02_filter_region,6,1,2000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",1.147068499996351
+q03_single_join_agg,6,1,2000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2434269999985759
+q04_two_joins,6,1,2000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",1.7713519999986715
+q05_three_joins_having,6,1,2000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'home'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.4700780000088685
+q06_subquery_filter,6,1,2000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",1.3828920000023004
+q07_correlated_subquery,6,1,2000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'clothing'",1.8327669999962382
+q08_four_joins_full,6,1,2000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.665395000003514
+q09_window_function,6,1,2000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",3.7677644999973836
+q10_distinct_multi_join,6,1,2000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.60804599999409
+q01_simple_filter,7,1,2000,SELECT * FROM sales WHERE quantity > 10,0.8486719999964976
+q02_filter_region,7,1,2000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",1.1082879999975148
+q03_single_join_agg,7,1,2000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.177118500002905
+q04_two_joins,7,1,2000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.8170514999980014
+q05_three_joins_having,7,1,2000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.2879455000008875
+q06_subquery_filter,7,1,2000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",1.4078315000034536
+q07_correlated_subquery,7,1,2000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.7375985000001037
+q08_four_joins_full,7,1,2000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.214563499992607
+q09_window_function,7,1,2000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'home'",4.297949499999731
+q10_distinct_multi_join,7,1,2000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.6589829999986705
+q01_simple_filter,0,2,4000,SELECT * FROM sales WHERE quantity > 10,1.6667149999989306
+q02_filter_region,0,2,4000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",1.5724149999982728
+q03_single_join_agg,0,2,4000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.6816219999995496
+q04_two_joins,0,2,4000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.2009675000020934
+q05_three_joins_having,0,2,4000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.7888214999975958
+q06_subquery_filter,0,2,4000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",1.8097849999989535
+q07_correlated_subquery,0,2,4000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.042790499999114
+q08_four_joins_full,0,2,4000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.781015500000763
+q09_window_function,0,2,4000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",4.4972355000041375
+q10_distinct_multi_join,0,2,4000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.5838809999948467
+q01_simple_filter,1,2,4000,SELECT * FROM sales WHERE quantity > 10,1.4084439999919596
+q02_filter_region,1,2,4000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'south'",1.8294900000057623
+q03_single_join_agg,1,2,4000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.1484455000001503
+q04_two_joins,1,2,4000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.820565500004534
+q05_three_joins_having,1,2,4000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.4237870000050066
+q06_subquery_filter,1,2,4000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",1.730261999995264
+q07_correlated_subquery,1,2,4000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.723455500005855
+q08_four_joins_full,1,2,4000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.554302000002508
+q09_window_function,1,2,4000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",4.039376000001482
+q10_distinct_multi_join,1,2,4000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.579807999995353
+q01_simple_filter,2,2,4000,SELECT * FROM sales WHERE quantity > 10,1.3326684999981353
+q02_filter_region,2,2,4000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",1.9027405000002773
+q03_single_join_agg,2,2,4000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2600499999919634
+q04_two_joins,2,2,4000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",1.7075980000029745
+q05_three_joins_having,2,2,4000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.260358000000906
+q06_subquery_filter,2,2,4000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",1.6149169999977175
+q07_correlated_subquery,2,2,4000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.717567000000031
+q08_four_joins_full,2,2,4000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.638263000003917
+q09_window_function,2,2,4000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",4.468959999996969
+q10_distinct_multi_join,2,2,4000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.5874205000088182
+q01_simple_filter,3,2,4000,SELECT * FROM sales WHERE quantity > 10,1.4142914999908385
+q02_filter_region,3,2,4000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",1.5100754999934907
+q03_single_join_agg,3,2,4000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2704159999969988
+q04_two_joins,3,2,4000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.82881250000122
+q05_three_joins_having,3,2,4000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.4297155000070347
+q06_subquery_filter,3,2,4000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",1.9000834999971516
+q07_correlated_subquery,3,2,4000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.7353705000004993
+q08_four_joins_full,3,2,4000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.845911999993291
+q09_window_function,3,2,4000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",5.037682999997628
+q10_distinct_multi_join,3,2,4000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",1.8027985000017566
+q01_simple_filter,4,2,4000,SELECT * FROM sales WHERE quantity > 10,1.525006500003201
+q02_filter_region,4,2,4000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",1.2887090000006651
+q03_single_join_agg,4,2,4000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.3523789999965175
+q04_two_joins,4,2,4000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",1.958744000006618
+q05_three_joins_having,4,2,4000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.6229784999998174
+q06_subquery_filter,4,2,4000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",2.0920550000056437
+q07_correlated_subquery,4,2,4000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",2.0083409999998025
+q08_four_joins_full,4,2,4000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.087753499999792
+q09_window_function,4,2,4000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",5.0429770000022245
+q10_distinct_multi_join,4,2,4000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",2.197659000003682
+q01_simple_filter,5,2,4000,SELECT * FROM sales WHERE quantity > 10,1.311784999998622
+q02_filter_region,5,2,4000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",1.2264179999945668
+q03_single_join_agg,5,2,4000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.1638065000028064
+q04_two_joins,5,2,4000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",1.7390044999956444
+q05_three_joins_having,5,2,4000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.36045249999961
+q06_subquery_filter,5,2,4000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",1.5275380000048244
+q07_correlated_subquery,5,2,4000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.5780895000006012
+q08_four_joins_full,5,2,4000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.37407249999211
+q09_window_function,5,2,4000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'toys'",3.6629224999984444
+q10_distinct_multi_join,5,2,4000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'online'",1.6957619999899975
+q01_simple_filter,6,2,4000,SELECT * FROM sales WHERE quantity > 10,1.3456340000033151
+q02_filter_region,6,2,4000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",1.179503499997736
+q03_single_join_agg,6,2,4000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.1725130000002082
+q04_two_joins,6,2,4000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",1.6632394999973599
+q05_three_joins_having,6,2,4000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'home'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.0564450000080114
+q06_subquery_filter,6,2,4000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",1.7013679999990927
+q07_correlated_subquery,6,2,4000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'clothing'",1.6928220000025362
+q08_four_joins_full,6,2,4000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.382507999991958
+q09_window_function,6,2,4000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",4.215096499997628
+q10_distinct_multi_join,6,2,4000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.4975434999939807
+q01_simple_filter,7,2,4000,SELECT * FROM sales WHERE quantity > 10,1.32969349999712
+q02_filter_region,7,2,4000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",1.2997300000066048
+q03_single_join_agg,7,2,4000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2548839999979577
+q04_two_joins,7,2,4000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.6402994999964449
+q05_three_joins_having,7,2,4000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.1372065000022644
+q06_subquery_filter,7,2,4000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",1.8052145000027053
+q07_correlated_subquery,7,2,4000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.8094564999913132
+q08_four_joins_full,7,2,4000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.5054395000008185
+q09_window_function,7,2,4000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'home'",4.380890000000193
+q10_distinct_multi_join,7,2,4000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.465381999999238
+q01_simple_filter,0,5,10000,SELECT * FROM sales WHERE quantity > 10,3.1085545000024695
+q02_filter_region,0,5,10000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",2.591867500001399
+q03_single_join_agg,0,5,10000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.546524500000146
+q04_two_joins,0,5,10000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.3578804999999647
+q05_three_joins_having,0,5,10000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.631952500003365
+q06_subquery_filter,0,5,10000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",2.886060999998108
+q07_correlated_subquery,0,5,10000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.9102884999924186
+q08_four_joins_full,0,5,10000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.405643999992549
+q09_window_function,0,5,10000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",6.405418999996471
+q10_distinct_multi_join,0,5,10000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",2.320273499996972
+q01_simple_filter,1,5,10000,SELECT * FROM sales WHERE quantity > 10,3.3895540000017377
+q02_filter_region,1,5,10000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'south'",4.318140499997014
+q03_single_join_agg,1,5,10000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.6444429999964427
+q04_two_joins,1,5,10000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",2.6039845000056516
+q05_three_joins_having,1,5,10000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.81138500000111
+q06_subquery_filter,1,5,10000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",3.154264499997339
+q07_correlated_subquery,1,5,10000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.167297999996265
+q08_four_joins_full,1,5,10000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.752555499997868
+q09_window_function,1,5,10000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",5.785780499998339
+q10_distinct_multi_join,1,5,10000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.7254239999999754
+q01_simple_filter,2,5,10000,SELECT * FROM sales WHERE quantity > 10,2.873268999998402
+q02_filter_region,2,5,10000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",2.631924499993943
+q03_single_join_agg,2,5,10000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.4657500000012647
+q04_two_joins,2,5,10000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",1.9580340000047158
+q05_three_joins_having,2,5,10000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.425388500000736
+q06_subquery_filter,2,5,10000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",2.78570599999739
+q07_correlated_subquery,2,5,10000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.7600000000044247
+q08_four_joins_full,2,5,10000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.896148499994979
+q09_window_function,2,5,10000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",5.376558000001808
+q10_distinct_multi_join,2,5,10000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.870288000006326
+q01_simple_filter,3,5,10000,SELECT * FROM sales WHERE quantity > 10,2.949603499999398
+q02_filter_region,3,5,10000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",1.666450500003691
+q03_single_join_agg,3,5,10000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.167834499995024
+q04_two_joins,3,5,10000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",2.0962915000026783
+q05_three_joins_having,3,5,10000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.1837615000066535
+q06_subquery_filter,3,5,10000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",3.1097505000090564
+q07_correlated_subquery,3,5,10000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.8196394999989707
+q08_four_joins_full,3,5,10000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.755424499997218
+q09_window_function,3,5,10000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",5.724907999997697
+q10_distinct_multi_join,3,5,10000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",1.6649189999995428
+q01_simple_filter,4,5,10000,SELECT * FROM sales WHERE quantity > 10,2.82412700001089
+q02_filter_region,4,5,10000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",1.4927710000023353
+q03_single_join_agg,4,5,10000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2276819999996746
+q04_two_joins,4,5,10000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",1.8844110000060255
+q05_three_joins_having,4,5,10000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.1571594999940658
+q06_subquery_filter,4,5,10000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",3.743643500001781
+q07_correlated_subquery,4,5,10000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.7439989999985528
+q08_four_joins_full,4,5,10000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.7942689999942445
+q09_window_function,4,5,10000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",5.404210499996509
+q10_distinct_multi_join,4,5,10000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",1.7731350000005364
+q01_simple_filter,5,5,10000,SELECT * FROM sales WHERE quantity > 10,2.858269999997276
+q02_filter_region,5,5,10000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",1.8959605000006263
+q03_single_join_agg,5,5,10000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2442810000052873
+q04_two_joins,5,5,10000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",1.8563579999977264
+q05_three_joins_having,5,5,10000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.3291355000054637
+q06_subquery_filter,5,5,10000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",3.3927659999974935
+q07_correlated_subquery,5,5,10000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.93004550000353
+q08_four_joins_full,5,5,10000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.272133500000109
+q09_window_function,5,5,10000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'toys'",5.9172435000007795
+q10_distinct_multi_join,5,5,10000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'online'",1.6206494999977394
+q01_simple_filter,6,5,10000,SELECT * FROM sales WHERE quantity > 10,2.9369935000076453
+q02_filter_region,6,5,10000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",1.4409435000004578
+q03_single_join_agg,6,5,10000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.1995885000004591
+q04_two_joins,6,5,10000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",1.9703660000018886
+q05_three_joins_having,6,5,10000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'home'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.259631499995862
+q06_subquery_filter,6,5,10000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",3.039552999993589
+q07_correlated_subquery,6,5,10000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'clothing'",1.753193999995517
+q08_four_joins_full,6,5,10000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.647063499994886
+q09_window_function,6,5,10000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",5.233138000001247
+q10_distinct_multi_join,6,5,10000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.5470860000021958
+q01_simple_filter,7,5,10000,SELECT * FROM sales WHERE quantity > 10,2.8836369999964973
+q02_filter_region,7,5,10000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",1.7397159999958944
+q03_single_join_agg,7,5,10000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.182379000006506
+q04_two_joins,7,5,10000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.7756244999986848
+q05_three_joins_having,7,5,10000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.2807830000104445
+q06_subquery_filter,7,5,10000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",2.8825150000031385
+q07_correlated_subquery,7,5,10000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.712325999996267
+q08_four_joins_full,7,5,10000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.385479500008671
+q09_window_function,7,5,10000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'home'",5.948483000004501
+q10_distinct_multi_join,7,5,10000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.5972140000002355
+q01_simple_filter,0,10,20000,SELECT * FROM sales WHERE quantity > 10,5.6676430000024425
+q02_filter_region,0,10,20000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",4.287501499995017
+q03_single_join_agg,0,10,20000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.6666220000018939
+q04_two_joins,0,10,20000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.3039744999948653
+q05_three_joins_having,0,10,20000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.7752115000012623
+q06_subquery_filter,0,10,20000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",4.468492499995591
+q07_correlated_subquery,0,10,20000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.337458999996045
+q08_four_joins_full,0,10,20000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.280556999998964
+q09_window_function,0,10,20000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",8.261176499999578
+q10_distinct_multi_join,0,10,20000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.732758999999362
+q01_simple_filter,1,10,20000,SELECT * FROM sales WHERE quantity > 10,5.335107500002323
+q02_filter_region,1,10,20000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'south'",5.796572999990701
+q03_single_join_agg,1,10,20000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.3464525000017602
+q04_two_joins,1,10,20000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.9533060000043179
+q05_three_joins_having,1,10,20000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.315370499999858
+q06_subquery_filter,1,10,20000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",4.600384500001553
+q07_correlated_subquery,1,10,20000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.9254719999963754
+q08_four_joins_full,1,10,20000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.407450500001687
+q09_window_function,1,10,20000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",8.770183999999404
+q10_distinct_multi_join,1,10,20000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.975526500004321
+q01_simple_filter,2,10,20000,SELECT * FROM sales WHERE quantity > 10,5.359355500004881
+q02_filter_region,2,10,20000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",4.1720390000037355
+q03_single_join_agg,2,10,20000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.3538325000013174
+q04_two_joins,2,10,20000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.7288649999945847
+q05_three_joins_having,2,10,20000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.826975499999662
+q06_subquery_filter,2,10,20000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",4.587886500004856
+q07_correlated_subquery,2,10,20000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.9223669999988147
+q08_four_joins_full,2,10,20000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.3873369999948295
+q09_window_function,2,10,20000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",7.8280784999975594
+q10_distinct_multi_join,2,10,20000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",2.2250920000033148
+q01_simple_filter,3,10,20000,SELECT * FROM sales WHERE quantity > 10,5.530015999994475
+q02_filter_region,3,10,20000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",2.4486390000006963
+q03_single_join_agg,3,10,20000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.3704684999993333
+q04_two_joins,3,10,20000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.9532955000016727
+q05_three_joins_having,3,10,20000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.8313979999978756
+q06_subquery_filter,3,10,20000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",5.7772200000059115
+q07_correlated_subquery,3,10,20000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.9250540000044225
+q08_four_joins_full,3,10,20000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.311126999998805
+q09_window_function,3,10,20000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",8.71676899999585
+q10_distinct_multi_join,3,10,20000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",1.8010665000005588
+q01_simple_filter,4,10,20000,SELECT * FROM sales WHERE quantity > 10,5.21846249999669
+q02_filter_region,4,10,20000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",2.0513219999926946
+q03_single_join_agg,4,10,20000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2462995000035448
+q04_two_joins,4,10,20000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",2.2633675000065523
+q05_three_joins_having,4,10,20000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.3648155000017823
+q06_subquery_filter,4,10,20000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",5.025961999997719
+q07_correlated_subquery,4,10,20000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.8041155000005915
+q08_four_joins_full,4,10,20000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.125358000000801
+q09_window_function,4,10,20000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",8.18233550000258
+q10_distinct_multi_join,4,10,20000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",1.7643090000021289
+q01_simple_filter,5,10,20000,SELECT * FROM sales WHERE quantity > 10,5.360334000002354
+q02_filter_region,5,10,20000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",2.7064410000008365
+q03_single_join_agg,5,10,20000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2405869999980723
+q04_two_joins,5,10,20000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",2.1946554999985324
+q05_three_joins_having,5,10,20000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.4401014999924087
+q06_subquery_filter,5,10,20000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",4.34081500000616
+q07_correlated_subquery,5,10,20000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.9290205000004335
+q08_four_joins_full,5,10,20000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.3500350000064145
+q09_window_function,5,10,20000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'toys'",7.625394499996219
+q10_distinct_multi_join,5,10,20000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'online'",1.9611659999938524
+q01_simple_filter,6,10,20000,SELECT * FROM sales WHERE quantity > 10,5.28761000000344
+q02_filter_region,6,10,20000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",2.100688000005846
+q03_single_join_agg,6,10,20000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.4998770000076433
+q04_two_joins,6,10,20000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.0235849999963307
+q05_three_joins_having,6,10,20000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'home'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.506544999995697
+q06_subquery_filter,6,10,20000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",5.2020280000064645
+q07_correlated_subquery,6,10,20000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'clothing'",2.126515999997025
+q08_four_joins_full,6,10,20000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.243669499996884
+q09_window_function,6,10,20000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",7.549484499996595
+q10_distinct_multi_join,6,10,20000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.7039710000048558
+q01_simple_filter,7,10,20000,SELECT * FROM sales WHERE quantity > 10,5.235548499996412
+q02_filter_region,7,10,20000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",2.6135295000031533
+q03_single_join_agg,7,10,20000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.2309239999979127
+q04_two_joins,7,10,20000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",1.8891820000064286
+q05_three_joins_having,7,10,20000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.256506500003752
+q06_subquery_filter,7,10,20000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",4.396856999996146
+q07_correlated_subquery,7,10,20000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.917542000001049
+q08_four_joins_full,7,10,20000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",4.855355499998382
+q09_window_function,7,10,20000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'home'",9.02636850000249
+q10_distinct_multi_join,7,10,20000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.6235074999997323
+q01_simple_filter,0,20,40000,SELECT * FROM sales WHERE quantity > 10,10.483243999999559
+q02_filter_region,0,20,40000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",7.721266499991941
+q03_single_join_agg,0,20,40000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.799517499996739
+q04_two_joins,0,20,40000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.8360910000060358
+q05_three_joins_having,0,20,40000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.072139000003915
+q06_subquery_filter,0,20,40000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",8.09606300000354
+q07_correlated_subquery,0,20,40000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.1177000000065505
+q08_four_joins_full,0,20,40000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.977033999997161
+q09_window_function,0,20,40000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",12.622727500001929
+q10_distinct_multi_join,0,20,40000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",2.4070060000056515
+q01_simple_filter,1,20,40000,SELECT * FROM sales WHERE quantity > 10,10.871910500000581
+q02_filter_region,1,20,40000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'south'",10.538448500000186
+q03_single_join_agg,1,20,40000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.393777499998805
+q04_two_joins,1,20,40000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",2.2588164999959304
+q05_three_joins_having,1,20,40000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.830689500008532
+q06_subquery_filter,1,20,40000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",8.041654000003007
+q07_correlated_subquery,1,20,40000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.2131555000015624
+q08_four_joins_full,1,20,40000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",6.062116999999034
+q09_window_function,1,20,40000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",15.169595999999785
+q10_distinct_multi_join,1,20,40000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.9438475000015387
+q01_simple_filter,2,20,40000,SELECT * FROM sales WHERE quantity > 10,10.189091500009795
+q02_filter_region,2,20,40000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",7.755082999999274
+q03_single_join_agg,2,20,40000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.3142209999941201
+q04_two_joins,2,20,40000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.3089974999948026
+q05_three_joins_having,2,20,40000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.6874019999993948
+q06_subquery_filter,2,20,40000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",8.024753000000828
+q07_correlated_subquery,2,20,40000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",1.9774204999976064
+q08_four_joins_full,2,20,40000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.54848349999304
+q09_window_function,2,20,40000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",12.78367649999268
+q10_distinct_multi_join,2,20,40000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.924369999997566
+q01_simple_filter,3,20,40000,SELECT * FROM sales WHERE quantity > 10,10.675096000007045
+q02_filter_region,3,20,40000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",3.3341990000010924
+q03_single_join_agg,3,20,40000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.3881619999978057
+q04_two_joins,3,20,40000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",2.3067345000029604
+q05_three_joins_having,3,20,40000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.6697755000029133
+q06_subquery_filter,3,20,40000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",9.157242500002383
+q07_correlated_subquery,3,20,40000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",1.997049499998127
+q08_four_joins_full,3,20,40000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.728111499998079
+q09_window_function,3,20,40000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",13.849547500001336
+q10_distinct_multi_join,3,20,40000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",2.1248705000047607
+q01_simple_filter,4,20,40000,SELECT * FROM sales WHERE quantity > 10,10.020054999998251
+q02_filter_region,4,20,40000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",3.3847849999943946
+q03_single_join_agg,4,20,40000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.3970839999970508
+q04_two_joins,4,20,40000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",2.361276499996734
+q05_three_joins_having,4,20,40000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.6071325000032175
+q06_subquery_filter,4,20,40000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",9.168296999995107
+q07_correlated_subquery,4,20,40000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",2.298617999997532
+q08_four_joins_full,4,20,40000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.855363499996713
+q09_window_function,4,20,40000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",12.339814000000615
+q10_distinct_multi_join,4,20,40000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",2.037371999996651
+q01_simple_filter,5,20,40000,SELECT * FROM sales WHERE quantity > 10,10.271387000003074
+q02_filter_region,5,20,40000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",5.617429999993817
+q03_single_join_agg,5,20,40000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.4621850000011705
+q04_two_joins,5,20,40000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",2.9101939999947035
+q05_three_joins_having,5,20,40000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.4428949999991687
+q06_subquery_filter,5,20,40000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",9.719891500004962
+q07_correlated_subquery,5,20,40000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",2.0269334999980515
+q08_four_joins_full,5,20,40000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",8.086585999997453
+q09_window_function,5,20,40000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'toys'",12.310931999998331
+q10_distinct_multi_join,5,20,40000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'online'",2.008906499995078
+q01_simple_filter,6,20,40000,SELECT * FROM sales WHERE quantity > 10,10.408433500003866
+q02_filter_region,6,20,40000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",4.042718500002707
+q03_single_join_agg,6,20,40000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.4057859999994093
+q04_two_joins,6,20,40000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",2.481412000001626
+q05_three_joins_having,6,20,40000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'home'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.0354035000073054
+q06_subquery_filter,6,20,40000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",9.571400500000493
+q07_correlated_subquery,6,20,40000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'clothing'",1.9434579999995094
+q08_four_joins_full,6,20,40000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.681713999997839
+q09_window_function,6,20,40000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",12.362435000000005
+q10_distinct_multi_join,6,20,40000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.9369624999896473
+q01_simple_filter,7,20,40000,SELECT * FROM sales WHERE quantity > 10,9.829484499995544
+q02_filter_region,7,20,40000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",4.848872000003723
+q03_single_join_agg,7,20,40000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.4055229999954122
+q04_two_joins,7,20,40000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",2.34508300000158
+q05_three_joins_having,7,20,40000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",2.9951040000071316
+q06_subquery_filter,7,20,40000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",7.905186500003936
+q07_correlated_subquery,7,20,40000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.0554709999984766
+q08_four_joins_full,7,20,40000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",5.553178999996078
+q09_window_function,7,20,40000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'home'",15.211052499999766
+q10_distinct_multi_join,7,20,40000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",1.9555014999923515
+q01_simple_filter,0,50,100000,SELECT * FROM sales WHERE quantity > 10,25.835310499999764
+q02_filter_region,0,50,100000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",17.483557999995014
+q03_single_join_agg,0,50,100000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.8523605000027032
+q04_two_joins,0,50,100000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",4.111532500004955
+q05_three_joins_having,0,50,100000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.9090974999993477
+q06_subquery_filter,0,50,100000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",18.92292750000024
+q07_correlated_subquery,0,50,100000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.685079500004406
+q08_four_joins_full,0,50,100000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",8.048746000007156
+q09_window_function,0,50,100000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",27.384236499997883
+q10_distinct_multi_join,0,50,100000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",2.7178640000045107
+q01_simple_filter,1,50,100000,SELECT * FROM sales WHERE quantity > 10,25.66177900000355
+q02_filter_region,1,50,100000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'south'",25.189558000008105
+q03_single_join_agg,1,50,100000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.852627499999926
+q04_two_joins,1,50,100000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",3.4758445000022675
+q05_three_joins_having,1,50,100000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.810821499996564
+q06_subquery_filter,1,50,100000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",18.875337000004322
+q07_correlated_subquery,1,50,100000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.6783279999946785
+q08_four_joins_full,1,50,100000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",8.08822899999484
+q09_window_function,1,50,100000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",34.09148250000271
+q10_distinct_multi_join,1,50,100000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",2.787727500006554
+q01_simple_filter,2,50,100000,SELECT * FROM sales WHERE quantity > 10,25.898592999993753
+q02_filter_region,2,50,100000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",18.16372150000234
+q03_single_join_agg,2,50,100000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.8872250000043778
+q04_two_joins,2,50,100000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",3.582030499998723
+q05_three_joins_having,2,50,100000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.7766140000030646
+q06_subquery_filter,2,50,100000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",18.886131500003955
+q07_correlated_subquery,2,50,100000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.636518000002752
+q08_four_joins_full,2,50,100000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",8.42450550000251
+q09_window_function,2,50,100000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",28.001154499996517
+q10_distinct_multi_join,2,50,100000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",2.8088010000004715
+q01_simple_filter,3,50,100000,SELECT * FROM sales WHERE quantity > 10,25.47354400000046
+q02_filter_region,3,50,100000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",7.059618500001363
+q03_single_join_agg,3,50,100000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.8978745000097774
+q04_two_joins,3,50,100000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",3.5627319999989027
+q05_three_joins_having,3,50,100000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.7031964999982847
+q06_subquery_filter,3,50,100000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",21.458630499999742
+q07_correlated_subquery,3,50,100000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",2.6804560000002198
+q08_four_joins_full,3,50,100000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",7.993270000000052
+q09_window_function,3,50,100000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",31.636747000000298
+q10_distinct_multi_join,3,50,100000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",3.1487815000019737
+q01_simple_filter,4,50,100000,SELECT * FROM sales WHERE quantity > 10,28.864203499992414
+q02_filter_region,4,50,100000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",8.313511000004326
+q03_single_join_agg,4,50,100000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",2.1036849999944707
+q04_two_joins,4,50,100000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",4.4738365000043245
+q05_three_joins_having,4,50,100000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",4.888408500001162
+q06_subquery_filter,4,50,100000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",24.358409499996014
+q07_correlated_subquery,4,50,100000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",3.8018424999961553
+q08_four_joins_full,4,50,100000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",9.113952500001687
+q09_window_function,4,50,100000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",29.57531899999566
+q10_distinct_multi_join,4,50,100000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",3.0773780000075135
+q01_simple_filter,5,50,100000,SELECT * FROM sales WHERE quantity > 10,26.648391999998466
+q02_filter_region,5,50,100000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",10.554478999999617
+q03_single_join_agg,5,50,100000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",1.8981629999998972
+q04_two_joins,5,50,100000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",3.881872499995609
+q05_three_joins_having,5,50,100000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.7761024999980464
+q06_subquery_filter,5,50,100000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",19.263065500005894
+q07_correlated_subquery,5,50,100000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",3.265420999994717
+q08_four_joins_full,5,50,100000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",7.808626500001026
+q09_window_function,5,50,100000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'toys'",30.49782449999583
+q10_distinct_multi_join,5,50,100000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'online'",3.103539500003194
+q01_simple_filter,6,50,100000,SELECT * FROM sales WHERE quantity > 10,26.85231299999913
+q02_filter_region,6,50,100000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",8.374605999996731
+q03_single_join_agg,6,50,100000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",2.54475750000438
+q04_two_joins,6,50,100000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",3.907760499998858
+q05_three_joins_having,6,50,100000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'home'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",3.764510500005258
+q06_subquery_filter,6,50,100000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",21.654030999997076
+q07_correlated_subquery,6,50,100000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'clothing'",2.6581890000088038
+q08_four_joins_full,6,50,100000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",8.191560500002026
+q09_window_function,6,50,100000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",27.1493450000051
+q10_distinct_multi_join,6,50,100000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",2.7584789999934856
+q01_simple_filter,7,50,100000,SELECT * FROM sales WHERE quantity > 10,26.402970499994183
+q02_filter_region,7,50,100000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",10.552818000000741
+q03_single_join_agg,7,50,100000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",2.140177500002949
+q04_two_joins,7,50,100000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",3.8283824999965077
+q05_three_joins_having,7,50,100000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",4.132770500000049
+q06_subquery_filter,7,50,100000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",19.697479500003112
+q07_correlated_subquery,7,50,100000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",2.6889569999966056
+q08_four_joins_full,7,50,100000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",8.498433500001568
+q09_window_function,7,50,100000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'home'",36.979635999998095
+q10_distinct_multi_join,7,50,100000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",3.0857810000100017
+q01_simple_filter,0,100,200000,SELECT * FROM sales WHERE quantity > 10,54.213533999991625
+q02_filter_region,0,100,200000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",37.23495000000554
+q03_single_join_agg,0,100,200000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",3.317610499998125
+q04_two_joins,0,100,200000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",5.70500450000111
+q05_three_joins_having,0,100,200000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",6.0338815000022805
+q06_subquery_filter,0,100,200000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",40.43694900000361
+q07_correlated_subquery,0,100,200000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",3.8231240000001776
+q08_four_joins_full,0,100,200000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",13.001531000000455
+q09_window_function,0,100,200000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",58.172047500001156
+q10_distinct_multi_join,0,100,200000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",4.776952999996809
+q01_simple_filter,1,100,200000,SELECT * FROM sales WHERE quantity > 10,54.54812249999463
+q02_filter_region,1,100,200000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'south'",56.09496249999779
+q03_single_join_agg,1,100,200000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",3.724925000000212
+q04_two_joins,1,100,200000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",6.49277899999845
+q05_three_joins_having,1,100,200000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",5.614728499999444
+q06_subquery_filter,1,100,200000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",42.06570499999884
+q07_correlated_subquery,1,100,200000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",4.0803349999976035
+q08_four_joins_full,1,100,200000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",13.367111499995588
+q09_window_function,1,100,200000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",71.49311650000101
+q10_distinct_multi_join,1,100,200000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",4.332216999998195
+q01_simple_filter,2,100,200000,SELECT * FROM sales WHERE quantity > 10,57.9098689999924
+q02_filter_region,2,100,200000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",37.7080590000034
+q03_single_join_agg,2,100,200000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",2.7655060000029152
+q04_two_joins,2,100,200000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",5.1964854999937415
+q05_three_joins_having,2,100,200000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",5.06280750000343
+q06_subquery_filter,2,100,200000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",38.17408999999827
+q07_correlated_subquery,2,100,200000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",3.7760614999982067
+q08_four_joins_full,2,100,200000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",12.453481999997962
+q09_window_function,2,100,200000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",57.89180549999884
+q10_distinct_multi_join,2,100,200000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",4.5366700000002425
+q01_simple_filter,3,100,200000,SELECT * FROM sales WHERE quantity > 10,56.29659600000281
+q02_filter_region,3,100,200000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",16.203193499997326
+q03_single_join_agg,3,100,200000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",3.0826750000017
+q04_two_joins,3,100,200000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",5.878049999999746
+q05_three_joins_having,3,100,200000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",5.257256500001972
+q06_subquery_filter,3,100,200000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",45.27714199999622
+q07_correlated_subquery,3,100,200000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",4.013096500003144
+q08_four_joins_full,3,100,200000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",11.783944500002974
+q09_window_function,3,100,200000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",67.7486705000021
+q10_distinct_multi_join,3,100,200000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",4.770372499997677
+q01_simple_filter,4,100,200000,SELECT * FROM sales WHERE quantity > 10,53.5635379999988
+q02_filter_region,4,100,200000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",13.84224049999716
+q03_single_join_agg,4,100,200000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",2.6696774999948047
+q04_two_joins,4,100,200000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",5.30635849999328
+q05_three_joins_having,4,100,200000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",4.826889000007384
+q06_subquery_filter,4,100,200000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",43.8992374999998
+q07_correlated_subquery,4,100,200000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",3.7565485000001786
+q08_four_joins_full,4,100,200000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",12.279449499999373
+q09_window_function,4,100,200000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",56.1219845000025
+q10_distinct_multi_join,4,100,200000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",4.621823000000802
+q01_simple_filter,5,100,200000,SELECT * FROM sales WHERE quantity > 10,57.76996650000399
+q02_filter_region,5,100,200000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",20.238995499994417
+q03_single_join_agg,5,100,200000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",3.0628405000001635
+q04_two_joins,5,100,200000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",5.702754499992579
+q05_three_joins_having,5,100,200000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",4.997139499998582
+q06_subquery_filter,5,100,200000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",50.078384000009635
+q07_correlated_subquery,5,100,200000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",3.787860000002752
+q08_four_joins_full,5,100,200000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",12.109179500001233
+q09_window_function,5,100,200000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'toys'",54.43653550000249
+q10_distinct_multi_join,5,100,200000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'online'",4.613543500006756
+q01_simple_filter,6,100,200000,SELECT * FROM sales WHERE quantity > 10,54.713189500006365
+q02_filter_region,6,100,200000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",14.948077999989096
+q03_single_join_agg,6,100,200000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",2.786815999996861
+q04_two_joins,6,100,200000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",5.27913599999863
+q05_three_joins_having,6,100,200000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'home'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",6.090879999995025
+q06_subquery_filter,6,100,200000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",45.46921049999497
+q07_correlated_subquery,6,100,200000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'clothing'",3.4437304999954677
+q08_four_joins_full,6,100,200000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",12.13689249999561
+q09_window_function,6,100,200000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",57.49692850000088
+q10_distinct_multi_join,6,100,200000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",4.841347500004645
+q01_simple_filter,7,100,200000,SELECT * FROM sales WHERE quantity > 10,53.7809710000019
+q02_filter_region,7,100,200000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",20.220604499996853
+q03_single_join_agg,7,100,200000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",2.8550809999998705
+q04_two_joins,7,100,200000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",6.180996000004768
+q05_three_joins_having,7,100,200000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",4.739506499994661
+q06_subquery_filter,7,100,200000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",38.03357799999674
+q07_correlated_subquery,7,100,200000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",3.539339500001404
+q08_four_joins_full,7,100,200000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",11.559559999994917
+q09_window_function,7,100,200000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'home'",73.90656649999983
+q10_distinct_multi_join,7,100,200000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",4.458888000002048
+q01_simple_filter,0,200,400000,SELECT * FROM sales WHERE quantity > 10,126.5322165000029
+q02_filter_region,0,200,400000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",72.80816400000134
+q03_single_join_agg,0,200,400000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",4.919424500002378
+q04_two_joins,0,200,400000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",8.593630500001836
+q05_three_joins_having,0,200,400000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",7.80371649999978
+q06_subquery_filter,0,200,400000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",82.60885899999693
+q07_correlated_subquery,0,200,400000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",5.805787999996426
+q08_four_joins_full,0,200,400000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",20.866526499993654
+q09_window_function,0,200,400000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",125.1755290000034
+q10_distinct_multi_join,0,200,400000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",7.149703499997884
+q01_simple_filter,1,200,400000,SELECT * FROM sales WHERE quantity > 10,144.57619499999907
+q02_filter_region,1,200,400000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'south'",102.90054250000225
+q03_single_join_agg,1,200,400000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",5.040008000001706
+q04_two_joins,1,200,400000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",9.78404300000335
+q05_three_joins_having,1,200,400000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",8.100945499990075
+q06_subquery_filter,1,200,400000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",78.54229249999634
+q07_correlated_subquery,1,200,400000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",6.536055499999804
+q08_four_joins_full,1,200,400000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",20.94188800000296
+q09_window_function,1,200,400000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",149.6774115000008
+q10_distinct_multi_join,1,200,400000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",7.131958999998744
+q01_simple_filter,2,200,400000,SELECT * FROM sales WHERE quantity > 10,109.07380550000312
+q02_filter_region,2,200,400000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'north'",71.39690749999517
+q03_single_join_agg,2,200,400000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",5.00391599999972
+q04_two_joins,2,200,400000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",8.765365499996847
+q05_three_joins_having,2,200,400000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",7.863983000007124
+q06_subquery_filter,2,200,400000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",75.71166250000516
+q07_correlated_subquery,2,200,400000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",5.345151500002032
+q08_four_joins_full,2,200,400000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",20.455036000001314
+q09_window_function,2,200,400000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",123.6100540000038
+q10_distinct_multi_join,2,200,400000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",7.308616499997811
+q01_simple_filter,3,200,400000,SELECT * FROM sales WHERE quantity > 10,109.29565200000013
+q02_filter_region,3,200,400000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",29.08655549999395
+q03_single_join_agg,3,200,400000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",4.458268000000487
+q04_two_joins,3,200,400000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",9.250823999998659
+q05_three_joins_having,3,200,400000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",7.40586199999882
+q06_subquery_filter,3,200,400000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",90.31814099999735
+q07_correlated_subquery,3,200,400000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",5.630792999994583
+q08_four_joins_full,3,200,400000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",19.395106499999315
+q09_window_function,3,200,400000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'electronics'",153.25962899999723
+q10_distinct_multi_join,3,200,400000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",7.448807499997656
+q01_simple_filter,4,200,400000,SELECT * FROM sales WHERE quantity > 10,109.26532949999768
+q02_filter_region,4,200,400000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",29.434015000006752
+q03_single_join_agg,4,200,400000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",4.991650999997432
+q04_two_joins,4,200,400000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",9.033915499998102
+q05_three_joins_having,4,200,400000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",8.921503999999914
+q06_subquery_filter,4,200,400000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",92.24288450000273
+q07_correlated_subquery,4,200,400000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",6.062795500000107
+q08_four_joins_full,4,200,400000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",21.449485500006915
+q09_window_function,4,200,400000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",129.12061199999414
+q10_distinct_multi_join,4,200,400000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'wholesale'",7.06154600000275
+q01_simple_filter,5,200,400000,SELECT * FROM sales WHERE quantity > 10,110.48111050000387
+q02_filter_region,5,200,400000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",41.11367699999846
+q03_single_join_agg,5,200,400000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",4.627366000001132
+q04_two_joins,5,200,400000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'online'
+        GROUP BY c.segment, i.category",8.770268999995778
+q05_three_joins_having,5,200,400000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'electronics'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",7.964693499999953
+q06_subquery_filter,5,200,400000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'wholesale'
+        )",80.74816650000116
+q07_correlated_subquery,5,200,400000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'electronics'",5.725444999995943
+q08_four_joins_full,5,200,400000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",20.0019700000027
+q09_window_function,5,200,400000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'toys'",120.65082000000871
+q10_distinct_multi_join,5,200,400000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'online'",7.159314500007952
+q01_simple_filter,6,200,400000,SELECT * FROM sales WHERE quantity > 10,108.32722949999862
+q02_filter_region,6,200,400000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'east'",28.48288100000218
+q03_single_join_agg,6,200,400000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",4.656905500006303
+q04_two_joins,6,200,400000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'wholesale'
+        GROUP BY c.segment, i.category",8.861821000003545
+q05_three_joins_having,6,200,400000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'home'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",8.327809000007846
+q06_subquery_filter,6,200,400000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'retail'
+        )",90.66325949999765
+q07_correlated_subquery,6,200,400000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'clothing'",5.19065649999817
+q08_four_joins_full,6,200,400000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",20.515821000003598
+q09_window_function,6,200,400000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'clothing'",125.86023749999953
+q10_distinct_multi_join,6,200,400000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",6.844482500007132
+q01_simple_filter,7,200,400000,SELECT * FROM sales WHERE quantity > 10,115.50919049999209
+q02_filter_region,7,200,400000,"SELECT s.* FROM sales s JOIN stores st ON s.store_id = st.store_id
+        WHERE st.region = 'west'",45.557387999998866
+q03_single_join_agg,7,200,400000,"SELECT st.region, SUM(s.quantity) AS total_qty
+        FROM sales s JOIN stores st ON s.store_id = st.store_id
+        GROUP BY st.region",4.676387999992926
+q04_two_joins,7,200,400000,"SELECT c.segment, i.category, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        WHERE c.segment = 'retail'
+        GROUP BY c.segment, i.category",9.021580000002416
+q05_three_joins_having,7,200,400000,"SELECT st.region, i.category, COUNT(*) AS n_sales, AVG(s.quantity) AS avg_qty
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        WHERE i.category = 'grocery'
+        GROUP BY st.region, i.category
+        HAVING COUNT(*) > 5",7.448461499990344
+q06_subquery_filter,7,200,400000,"SELECT * FROM sales
+        WHERE customer_id IN (
+            SELECT customer_id FROM customers WHERE segment = 'online'
+        )",80.27838450000502
+q07_correlated_subquery,7,200,400000,"SELECT i.item_id, i.category,
+               (SELECT SUM(s2.quantity) FROM sales s2 WHERE s2.item_id = i.item_id) AS total_qty
+        FROM items i WHERE i.category = 'home'",5.5289069999986395
+q08_four_joins_full,7,200,400000,"SELECT st.region, c.segment, d.month, i.category,
+               SUM(s.quantity) AS qty, SUM(s.quantity * i.price) AS revenue
+        FROM sales s
+        JOIN stores st ON s.store_id = st.store_id
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN items i ON s.item_id = i.item_id
+        JOIN dates d ON s.date_id = d.date_id
+        GROUP BY st.region, c.segment, d.month, i.category
+        ORDER BY revenue DESC",19.7249295000006
+q09_window_function,7,200,400000,"SELECT s.sale_id, s.item_id, s.quantity,
+               SUM(s.quantity) OVER (PARTITION BY s.item_id ORDER BY s.date_id) AS running_qty
+        FROM sales s
+        JOIN items i ON s.item_id = i.item_id
+        WHERE i.category = 'home'",175.24071249999906
+q10_distinct_multi_join,7,200,400000,"SELECT DISTINCT c.region, st.region
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        JOIN stores st ON s.store_id = st.store_id
+        WHERE c.segment = 'retail'",7.127042000000472

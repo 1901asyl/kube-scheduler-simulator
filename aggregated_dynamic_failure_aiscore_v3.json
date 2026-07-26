@@ -1,0 +1,38 @@
+{
+  "files": [
+    "results_node_failure/node_failure_aiscore_v3_run1_failure_results.csv",
+    "results_node_failure/node_failure_aiscore_v3_run2_failure_results.csv",
+    "results_node_failure/node_failure_aiscore_v3_run3_failure_results.csv",
+    "results_node_failure/node_failure_aiscore_v3_run4_failure_results.csv",
+    "results_node_failure/node_failure_aiscore_v3_run5_failure_results.csv",
+    "results_node_failure/node_failure_aiscore_v3_run6_failure_results.csv",
+    "results_node_failure/node_failure_aiscore_v3_run7_failure_results.csv",
+    "results_node_failure/node_failure_aiscore_v3_run8_failure_results.csv"
+  ],
+  "per_run_rate": [
+    0.2222222222222222,
+    0.2222222222222222,
+    0.28888888888888886,
+    0.28888888888888886,
+    0.2222222222222222,
+    0.28888888888888886,
+    0.2222222222222222,
+    0.2222222222222222
+  ],
+  "per_run_n_post_failure": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+  ],
+  "n_runs_valid": 8,
+  "mean_rate": 0.2472222222222222,
+  "ci_confidence": 0.95,
+  "ci_low": 0.21837675997690636,
+  "ci_high": 0.27606768446753804,
+  "method": "t-interval across independent scenario repeats"
+}

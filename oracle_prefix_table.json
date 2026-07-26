@@ -1,0 +1,162 @@
+{
+  "1": {
+    "placed": 1,
+    "cpu_util_stddev": 0.0019641855032959655
+  },
+  "2": {
+    "placed": 2,
+    "cpu_util_stddev": 0.0025983731852596815
+  },
+  "3": {
+    "placed": 3,
+    "cpu_util_stddev": 0.003540985773328323
+  },
+  "4": {
+    "placed": 4,
+    "cpu_util_stddev": 0.002598373185259682
+  },
+  "5": {
+    "placed": 5,
+    "cpu_util_stddev": 0.001964185503295966
+  },
+  "6": {
+    "placed": 6,
+    "cpu_util_stddev": 0.0
+  },
+  "7": {
+    "placed": 7,
+    "cpu_util_stddev": 0.001964185503295965
+  },
+  "8": {
+    "placed": 8,
+    "cpu_util_stddev": 0.002598373185259681
+  },
+  "9": {
+    "placed": 9,
+    "cpu_util_stddev": 0.0017704928866641627
+  },
+  "10": {
+    "placed": 10,
+    "cpu_util_stddev": 0.0012991865926298405
+  },
+  "11": {
+    "placed": 11,
+    "cpu_util_stddev": 0.00675077156084152
+  },
+  "12": {
+    "placed": 12,
+    "cpu_util_stddev": 0.0
+  },
+  "13": {
+    "placed": 13,
+    "cpu_util_stddev": 0.0009820927516479825
+  },
+  "14": {
+    "placed": 14,
+    "cpu_util_stddev": 0.0012991865926298416
+  },
+  "15": {
+    "placed": 15,
+    "cpu_util_stddev": 0.0017704928866641605
+  },
+  "16": {
+    "placed": 16,
+    "cpu_util_stddev": 0.0012991865926298392
+  },
+  "17": {
+    "placed": 17,
+    "cpu_util_stddev": 0.0
+  },
+  "18": {
+    "placed": 18,
+    "cpu_util_stddev": 0.0012991865926298423
+  },
+  "19": {
+    "placed": 19,
+    "cpu_util_stddev": 0.0012991865926298423
+  },
+  "20": {
+    "placed": 20,
+    "cpu_util_stddev": 0.0
+  },
+  "21": {
+    "placed": 21,
+    "cpu_util_stddev": 0.0012991865926298423
+  },
+  "22": {
+    "placed": 22,
+    "cpu_util_stddev": 0.0012991865926298423
+  },
+  "23": {
+    "placed": 23,
+    "cpu_util_stddev": 0.0
+  },
+  "24": {
+    "placed": 24,
+    "cpu_util_stddev": 0.0012991865926298362
+  },
+  "25": {
+    "placed": 25,
+    "cpu_util_stddev": 0.0
+  },
+  "26": {
+    "placed": 26,
+    "cpu_util_stddev": 0.001299186592629846
+  },
+  "27": {
+    "placed": 27,
+    "cpu_util_stddev": 0.0012991865926298362
+  },
+  "28": {
+    "placed": 28,
+    "cpu_util_stddev": 0.0
+  },
+  "29": {
+    "placed": 29,
+    "cpu_util_stddev": 0.001299186592629846
+  },
+  "30": {
+    "placed": 30,
+    "cpu_util_stddev": 0.0012991865926298362
+  },
+  "31": {
+    "placed": 31,
+    "cpu_util_stddev": 0.0
+  },
+  "32": {
+    "placed": 32,
+    "cpu_util_stddev": 0.0012991865926298362
+  },
+  "33": {
+    "placed": 33,
+    "cpu_util_stddev": 0.0
+  },
+  "34": {
+    "placed": 34,
+    "cpu_util_stddev": 0.0012991865926298362
+  },
+  "35": {
+    "placed": 35,
+    "cpu_util_stddev": 0.0012991865926298362
+  },
+  "36": {
+    "placed": 36,
+    "cpu_util_stddev": 0.0
+  },
+  "37": {
+    "placed": 37,
+    "cpu_util_stddev": 0.001299186592629856
+  },
+  "38": {
+    "placed": 38,
+    "cpu_util_stddev": 0.0012991865926298164
+  },
+  "39": {
+    "placed": 39,
+    "cpu_util_stddev": 0.0
+  },
+  "40": {
+    "placed": 40,
+    "cpu_util_stddev": 0.001299186592629856
+  }
+}

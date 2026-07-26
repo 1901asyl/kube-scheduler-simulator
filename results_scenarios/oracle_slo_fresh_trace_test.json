@@ -1,0 +1,131 @@
+{
+  "config": {
+    "window_seconds": 300,
+    "sample_size": 40,
+    "min_pods": 20,
+    "max_pods": 300,
+    "z_trials": 10,
+    "seed": 42,
+    "out": "results_scenarios/oracle_slo_fresh_trace_test.json"
+  },
+  "trials": [
+    {
+      "trial": 0,
+      "window_bucket": 2279,
+      "n_pods": 27,
+      "cpu_util_stddev": 0.03540985773328324,
+      "mem_util_stddev": 0.0011065580541651013,
+      "cpu_jains_fairness": 0.9958512845061432,
+      "mem_jains_fairness": 0.9958512845061432,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 1,
+      "window_bucket": 675,
+      "n_pods": 26,
+      "cpu_util_stddev": 0.009820927516479817,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9992885094272501,
+      "mem_jains_fairness": 0.9976442873969374,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 2,
+      "window_bucket": 365,
+      "n_pods": 40,
+      "cpu_util_stddev": 0.012991865926298406,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 3,
+      "window_bucket": 1081,
+      "n_pods": 40,
+      "cpu_util_stddev": 0.010803020268127772,
+      "mem_util_stddev": 0.0029276774225763984,
+      "cpu_jains_fairness": 0.9998064257066661,
+      "mem_jains_fairness": 0.9884861137470738,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 4,
+      "window_bucket": 1025,
+      "n_pods": 40,
+      "cpu_util_stddev": 0.012991865926298406,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 5,
+      "window_bucket": 980,
+      "n_pods": 40,
+      "cpu_util_stddev": 0.012991865926298406,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 6,
+      "window_bucket": 724,
+      "n_pods": 40,
+      "cpu_util_stddev": 0.012991865926298406,
+      "mem_util_stddev": 0.003247966481574602,
+      "cpu_jains_fairness": 0.9992759244892684,
+      "mem_jains_fairness": 0.9856410256410256,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 7,
+      "window_bucket": 636,
+      "n_pods": 40,
+      "cpu_util_stddev": 0.025983731852596812,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 8,
+      "window_bucket": 1975,
+      "n_pods": 40,
+      "cpu_util_stddev": 0.009820927516479843,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9998563837426397,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 9,
+      "window_bucket": 593,
+      "n_pods": 40,
+      "cpu_util_stddev": 0.012991865926298406,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    }
+  ],
+  "cpu_summary": {
+    "mean": 0.01567977945184595,
+    "stddev_across_trials": 0.00789941068567622,
+    "p5": 0.00982092751647983,
+    "p50": 0.012991865926298406,
+    "p95": 0.031168101086974338,
+    "min": 0.009820927516479817,
+    "max": 0.03540985773328324
+  },
+  "mem_summary": {
+    "mean": 0.0012966143301071655,
+    "stddev_across_trials": 0.0009026781050888154,
+    "p5": 0.0008119916203936504,
+    "p50": 0.0008119916203936504,
+    "p95": 0.00310383640502541,
+    "min": 0.0008119916203936504,
+    "max": 0.003247966481574602
+  }
+}

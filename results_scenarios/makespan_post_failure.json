@@ -1,0 +1,182 @@
+{
+  "cluster_makespan_s": 80.0,
+  "per_node": {
+    "node-a": {
+      "makespan_s": 0,
+      "schedule": {},
+      "status": "Optimal (empty)"
+    },
+    "node-b": {
+      "makespan_s": 80.0,
+      "schedule": {
+        "bench-tiny-5v5mh": {
+          "start_s": 0,
+          "completion_s": 5.0
+        },
+        "bench-tiny-t682x": {
+          "start_s": 0,
+          "completion_s": 5.0
+        },
+        "bench-tiny-vtssv": {
+          "start_s": 0,
+          "completion_s": 5.0
+        },
+        "bench-small-z946h": {
+          "start_s": 0,
+          "completion_s": 10.0
+        },
+        "bench-small-nkjbh": {
+          "start_s": 0,
+          "completion_s": 10.0
+        },
+        "bench-small-qjbh8": {
+          "start_s": 0,
+          "completion_s": 10.0
+        },
+        "bench-small-92d7x": {
+          "start_s": 0,
+          "completion_s": 10.0
+        },
+        "bench-small-j2dzz": {
+          "start_s": 0,
+          "completion_s": 10.0
+        },
+        "bench-small-4fndt": {
+          "start_s": 0,
+          "completion_s": 10.0
+        },
+        "bench-medium-xdrtc": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-6khhl": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-ctv2g": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-large-7fcpb": {
+          "start_s": 0,
+          "completion_s": 40.0
+        },
+        "bench-large-d95b2": {
+          "start_s": 0,
+          "completion_s": 40.0
+        },
+        "bench-large-mgvsj": {
+          "start_s": 0,
+          "completion_s": 40.0
+        },
+        "bench-xlarge-8999c": {
+          "start_s": 0,
+          "completion_s": 80.0
+        },
+        "bench-xlarge-gltb6": {
+          "start_s": 0,
+          "completion_s": 80.0
+        },
+        "bench-xlarge-56p4m": {
+          "start_s": 0,
+          "completion_s": 80.0
+        }
+      },
+      "status": "Optimal"
+    },
+    "node-c": {
+      "makespan_s": 80.0,
+      "schedule": {
+        "bench-tiny-xzxmv": {
+          "start_s": 0,
+          "completion_s": 5.0
+        },
+        "bench-tiny-tl7gh": {
+          "start_s": 0,
+          "completion_s": 5.0
+        },
+        "bench-tiny-bd6m4": {
+          "start_s": 0,
+          "completion_s": 5.0
+        },
+        "bench-tiny-pg965": {
+          "start_s": 0,
+          "completion_s": 5.0
+        },
+        "bench-tiny-57r4d": {
+          "start_s": 0,
+          "completion_s": 5.0
+        },
+        "bench-small-rn4wk": {
+          "start_s": 0,
+          "completion_s": 10.0
+        },
+        "bench-small-nn9fg": {
+          "start_s": 0,
+          "completion_s": 10.0
+        },
+        "bench-medium-glv2l": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-bs8sv": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-48r77": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-n7g56": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-zlczn": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-large-9h8cq": {
+          "start_s": 0,
+          "completion_s": 40.0
+        },
+        "bench-large-2mlx7": {
+          "start_s": 0,
+          "completion_s": 40.0
+        },
+        "bench-large-lzgn9": {
+          "start_s": 0,
+          "completion_s": 40.0
+        },
+        "bench-large-rjf6d": {
+          "start_s": 0,
+          "completion_s": 40.0
+        },
+        "bench-large-9wpxm": {
+          "start_s": 0,
+          "completion_s": 40.0
+        },
+        "bench-xlarge-k4dhj": {
+          "start_s": 0,
+          "completion_s": 80.0
+        },
+        "bench-xlarge-4lp97": {
+          "start_s": 0,
+          "completion_s": 80.0
+        },
+        "bench-xlarge-fgqpv": {
+          "start_s": 0,
+          "completion_s": 80.0
+        },
+        "bench-xlarge-6cft9": {
+          "start_s": 0,
+          "completion_s": 80.0
+        },
+        "bench-xlarge-vxvst": {
+          "start_s": 0,
+          "completion_s": 80.0
+        }
+      },
+      "status": "Optimal"
+    }
+  }
+}

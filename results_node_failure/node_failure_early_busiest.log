@@ -1,0 +1,110 @@
+Загружено 100 событий. Отказ узла (mode=busiest) запланирован перед событием #30 (доля=30%)
+[t=  0.36s] pod #  0 -> node=node-kz9hc
+[t=120.32s] pod #  1 -> node=node-kz9hc
+[t=120.64s] pod #  2 -> node=node-wp2h6
+[t=121.27s] pod #  3 -> node=node-kz9hc
+[t=122.19s] pod #  4 -> node=node-wp2h6
+[t=123.11s] pod #  5 -> node=node-prhzd
+[t=123.73s] pod #  6 -> node=node-kz9hc
+[t=124.65s] pod #  7 -> node=node-6tckt
+[t=125.28s] pod #  8 -> node=node-prhzd
+[t=126.20s] pod #  9 -> node=node-wp2h6
+[t=127.13s] pod # 10 -> node=node-kz9hc
+[t=127.75s] pod # 11 -> node=node-wp2h6
+[t=128.67s] pod # 12 -> node=node-kz9hc
+[t=129.30s] pod # 13 -> node=node-prhzd
+[t=130.22s] pod # 14 -> node=node-wp2h6
+[t=130.85s] pod # 15 -> node=node-kz9hc
+[t=131.78s] pod # 16 -> node=node-6tckt
+[t=132.70s] pod # 17 -> node=node-kz9hc
+[t=133.32s] pod # 18 -> node=node-wp2h6
+[t=134.25s] pod # 19 -> node=node-prhzd
+[t=134.87s] pod # 20 -> node=node-kz9hc
+[t=135.79s] pod # 21 -> node=node-wp2h6
+[t=136.72s] pod # 22 -> node=node-kz9hc
+[t=137.34s] pod # 23 -> node=node-kz9hc
+[t=138.26s] pod # 24 -> node=node-prhzd
+[t=138.89s] pod # 25 -> node=node-wp2h6
+[t=139.81s] pod # 26 -> node=node-kz9hc
+[t=140.73s] pod # 27 -> node=node-wp2h6
+[t=141.35s] pod # 28 -> node=node-kz9hc
+[t=142.27s] pod # 29 -> node=node-6tckt
+
+>>> ОТКАЗ УЗЛА: удаляю 'node-kz9hc' перед событием #30 (HTTP 200) <<<
+
+[t=142.92s] pod # 30 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=143.84s] pod # 31 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=144.46s] pod # 32 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=145.38s] pod # 33 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=146.31s] pod # 34 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=146.93s] pod # 35 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=147.85s] pod # 36 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=148.47s] pod # 37 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=149.39s] pod # 38 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=150.32s] pod # 39 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=150.94s] pod # 40 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=151.86s] pod # 41 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=152.49s] pod # 42 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=153.41s] pod # 43 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=154.33s] pod # 44 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=154.96s] pod # 45 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=155.88s] pod # 46 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=156.49s] pod # 47 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=157.42s] pod # 48 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=158.34s] pod # 49 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=158.96s] pod # 50 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=159.88s] pod # 51 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=160.51s] pod # 52 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=161.43s] pod # 53 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=162.05s] pod # 54 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=162.97s] pod # 55 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=163.90s] pod # 56 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=164.52s] pod # 57 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=165.44s] pod # 58 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=166.06s] pod # 59 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=166.98s] pod # 60 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=167.90s] pod # 61 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=168.52s] pod # 62 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=169.44s] pod # 63 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=170.06s] pod # 64 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=170.98s] pod # 65 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=171.91s] pod # 66 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=172.54s] pod # 67 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=173.46s] pod # 68 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=174.08s] pod # 69 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=175.00s] pod # 70 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=175.92s] pod # 71 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=176.55s] pod # 72 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=177.47s] pod # 73 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=178.08s] pod # 74 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=179.01s] pod # 75 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=179.93s] pod # 76 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=180.54s] pod # 77 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=181.47s] pod # 78 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=182.09s] pod # 79 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=183.01s] pod # 80 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=183.94s] pod # 81 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=184.56s] pod # 82 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=185.48s] pod # 83 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=186.10s] pod # 84 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=187.02s] pod # 85 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=187.95s] pod # 86 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=188.56s] pod # 87 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=189.49s] pod # 88 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=190.11s] pod # 89 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=191.03s] pod # 90 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=191.65s] pod # 91 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=192.58s] pod # 92 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=193.50s] pod # 93 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=194.12s] pod # 94 -> node=node-6tckt [ПОСЛЕ ОТКАЗА]
+[t=195.04s] pod # 95 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+[t=195.66s] pod # 96 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=196.58s] pod # 97 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=197.51s] pod # 98 -> node=node-wp2h6 [ПОСЛЕ ОТКАЗА]
+[t=198.13s] pod # 99 -> node=node-prhzd [ПОСЛЕ ОТКАЗА]
+
+=== ИТОГ ===
+Удалённая нода: node-kz9hc
+До отказа:  30/30 запланировано (100.0%)
+После отказа: 70/70 запланировано (100.0%)
+Результаты: results_node_failure/node_failure_early_busiest_failure_results.csv

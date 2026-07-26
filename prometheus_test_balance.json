@@ -1,0 +1,7 @@
+{
+  "cpu_util_stddev": 0.0,
+  "mem_util_stddev": 0.0,
+  "cpu_util_mean": 0.0,
+  "mem_util_mean": 0.0,
+  "per_node": {}
+}

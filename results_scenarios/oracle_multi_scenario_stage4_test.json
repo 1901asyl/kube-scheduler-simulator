@@ -1,0 +1,72 @@
+[
+  {
+    "label": "homogeneous",
+    "nodes_used": [
+      "node-a",
+      "node-b",
+      "node-c"
+    ],
+    "total_cluster_cpu_m": 48000,
+    "oracle": {
+      "assignment": {
+        "bench-medium-v45w7": "node-c",
+        "bench-medium-m7h6z": "node-a",
+        "bench-medium-654q9": "node-c",
+        "bench-medium-qw4ck": "node-c",
+        "bench-medium-f4n7k": "node-a",
+        "bench-medium-7gw4r": "node-c",
+        "bench-medium-kthdz": "node-a",
+        "bench-medium-8kwg9": "node-c",
+        "bench-medium-xjdjj": "node-c",
+        "bench-medium-swb7f": "node-c",
+        "bench-medium-kfljn": "node-a",
+        "bench-medium-4ffs8": "node-c",
+        "bench-medium-kpdv7": "node-b",
+        "bench-medium-8stss": "node-b",
+        "bench-medium-nzkd8": "node-c",
+        "bench-medium-rgvcj": "node-c",
+        "bench-medium-dtxmn": "node-b",
+        "bench-medium-sz5x5": "node-b",
+        "bench-medium-pp9xg": "node-a",
+        "bench-medium-5pn9p": "node-c",
+        "bench-medium-zkzrs": "node-c",
+        "bench-medium-chl9h": "node-c",
+        "bench-medium-7bmn8": "node-b",
+        "bench-medium-h86mr": "node-b",
+        "bench-medium-dgzn8": "node-b",
+        "bench-medium-w55pl": "node-b",
+        "bench-medium-98qxt": "node-c",
+        "bench-medium-tj2bm": "node-b",
+        "bench-medium-69drw": "node-c",
+        "bench-medium-qxf79": "node-b",
+        "bench-medium-p8zhm": "node-c",
+        "bench-medium-tm8z6": "node-c",
+        "bench-medium-xvqcq": "node-a",
+        "bench-medium-jmh7b": "node-c",
+        "bench-medium-h72fs": "node-b",
+        "bench-medium-zcd54": "node-c",
+        "bench-medium-5qxv9": "node-b",
+        "bench-medium-k6dpb": "node-a",
+        "bench-medium-xfvpz": "node-c",
+        "bench-medium-csxsw": "node-b"
+      },
+      "max_placed": 40,
+      "total_pods": 40,
+      "min_max_utilization": 0.4375,
+      "sum_abs_deviation_cpu": 0.0347222222,
+      "sum_abs_deviation_mem": 0.0347222222,
+      "stage1_status": "Optimal",
+      "stage2_status": "Optimal",
+      "stage3_status": "Optimal",
+      "stage4_status": "Optimal"
+    },
+    "balance": {
+      "cpu_util_mean": 0.4201388888888889,
+      "cpu_util_stddev": 0.012991865926298406,
+      "mem_util_mean": 0.4201388888888889,
+      "mem_util_stddev": 0.012991865926298406,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665
+    }
+  }
+]

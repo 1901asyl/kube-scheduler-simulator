@@ -1,0 +1,16 @@
+{
+  "cpu_util_stddev": 0.415625,
+  "mem_util_stddev": 0.41796875,
+  "cpu_util_mean": 0.459375,
+  "mem_util_mean": 0.45703125,
+  "per_node": {
+    "node-7xsnr": {
+      "cpu_util": 0.875,
+      "mem_util": 0.875
+    },
+    "node-ssr4v": {
+      "cpu_util": 0.04375,
+      "mem_util": 0.0390625
+    }
+  }
+}

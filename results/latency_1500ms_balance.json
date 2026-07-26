@@ -1,0 +1,20 @@
+{
+  "per_node": {
+    "node-bmdrm": {
+      "cpu_utilization": 0.7062,
+      "memory_utilization": 0.6992
+    },
+    "node-pvkcw": {
+      "cpu_utilization": 0.4813,
+      "memory_utilization": 0.4766
+    },
+    "node-qmbb4": {
+      "cpu_utilization": 0.6521,
+      "memory_utilization": 0.6458
+    }
+  },
+  "cpu_utilization_std": 0.0959,
+  "memory_utilization_std": 0.0949,
+  "cpu_utilization_mean": 0.6132,
+  "memory_utilization_mean": 0.6072
+}

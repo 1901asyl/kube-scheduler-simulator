@@ -1,0 +1,51 @@
+bench-tiny-8tnxc               profile=tiny     -> node=node-whfjp
+bench-tiny-krfmh               profile=tiny     -> node=node-p4qb5
+bench-tiny-q7zr7               profile=tiny     -> node=node-p4qb5
+bench-tiny-5hj8p               profile=tiny     -> node=node-p4qb5
+bench-tiny-n6lcv               profile=tiny     -> node=node-whfjp
+bench-tiny-cs2s8               profile=tiny     -> node=node-p4qb5
+bench-tiny-glqfm               profile=tiny     -> node=node-4hkxb
+bench-tiny-w4knq               profile=tiny     -> node=node-whfjp
+bench-small-p4btt              profile=small    -> node=node-p4qb5
+bench-small-pwpxj              profile=small    -> node=node-p4qb5
+bench-small-pqfsg              profile=small    -> node=node-whfjp
+bench-small-cq5k8              profile=small    -> node=node-whfjp
+bench-small-m6cww              profile=small    -> node=node-4hkxb
+bench-small-kmmq2              profile=small    -> node=node-p4qb5
+bench-small-7xt8v              profile=small    -> node=node-p4qb5
+bench-small-mm9rx              profile=small    -> node=node-whfjp
+bench-medium-fdrh5             profile=medium   -> node=node-p4qb5
+bench-medium-qsl82             profile=medium   -> node=node-whfjp
+bench-medium-bp2k6             profile=medium   -> node=node-p4qb5
+bench-medium-4d5w2             profile=medium   -> node=node-4hkxb
+bench-medium-ls27x             profile=medium   -> node=node-p4qb5
+bench-medium-gcklb             profile=medium   -> node=node-whfjp
+bench-medium-9r6g5             profile=medium   -> node=node-p4qb5
+bench-medium-pjmtv             profile=medium   -> node=node-whfjp
+bench-large-lf82d              profile=large    -> node=node-p4qb5
+bench-large-629c2              profile=large    -> node=node-p4qb5
+bench-large-jlk6t              profile=large    -> node=node-whfjp
+bench-large-2gq4f              profile=large    -> node=node-4hkxb
+bench-large-mqqhb              profile=large    -> node=node-p4qb5
+bench-large-4ns7p              profile=large    -> node=node-whfjp
+bench-large-jmfjf              profile=large    -> node=node-p4qb5
+bench-large-j88wm              profile=large    -> node=node-p4qb5
+bench-xlarge-j5lpz             profile=xlarge   -> node=node-whfjp
+bench-xlarge-67h42             profile=xlarge   -> node=node-p4qb5
+bench-xlarge-dtqdf             profile=xlarge   -> node=node-4hkxb
+bench-xlarge-g9hz7             profile=xlarge   -> node=node-p4qb5
+bench-xlarge-qvzbv             profile=xlarge   -> node=node-whfjp
+bench-xlarge-tb7g2             profile=xlarge   -> node=node-p4qb5
+bench-xlarge-5m7b9             profile=xlarge   -> node=node-whfjp
+bench-xlarge-hkzdd             profile=xlarge   -> node=node-p4qb5
+
+Готово: 40/40 подов запланировано.
+Результаты: results_timing/timing_0ms_results.csv
+Метрики балансировки: results_timing/timing_0ms_balance.json
+  CPU utilization std=0.0901 mean=0.608
+  Memory utilization std=0.0893 mean=0.602
+
+real	0m31.154s
+user	0m0.141s
+sys	0m0.073s
+Всего вызовов Score(): 120

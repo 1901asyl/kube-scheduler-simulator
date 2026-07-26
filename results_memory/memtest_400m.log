@@ -1,0 +1,51 @@
+bench-tiny-hq29x               profile=tiny     -> node=node-nht2k
+bench-tiny-kn58h               profile=tiny     -> node=node-lqkss
+bench-tiny-tcwt7               profile=tiny     -> node=node-lqkss
+bench-tiny-hqh77               profile=tiny     -> node=node-nht2k
+bench-tiny-bjxcz               profile=tiny     -> node=node-lqkss
+bench-tiny-hkcxw               profile=tiny     -> node=node-nht2k
+bench-tiny-86gw2               profile=tiny     -> node=node-8n2nk
+bench-tiny-sssj9               profile=tiny     -> node=node-lqkss
+bench-small-7ld68              profile=small    -> node=node-lqkss
+bench-small-sfgv8              profile=small    -> node=node-lqkss
+bench-small-vxtrm              profile=small    -> node=node-nht2k
+bench-small-nw6f9              profile=small    -> node=node-nht2k
+bench-small-rwcsx              profile=small    -> node=node-lqkss
+bench-small-j4kl9              profile=small    -> node=node-8n2nk
+bench-small-bmlt5              profile=small    -> node=node-lqkss
+bench-small-5w95q              profile=small    -> node=node-nht2k
+bench-medium-sc4ks             profile=medium   -> node=node-lqkss
+bench-medium-sw8x8             profile=medium   -> node=node-nht2k
+bench-medium-7db4p             profile=medium   -> node=node-lqkss
+bench-medium-6s5xk             profile=medium   -> node=node-8n2nk
+bench-medium-htnp6             profile=medium   -> node=node-nht2k
+bench-medium-xqs4f             profile=medium   -> node=node-lqkss
+bench-medium-zmxdc             profile=medium   -> node=node-lqkss
+bench-medium-rhdm6             profile=medium   -> node=node-nht2k
+bench-large-t7c2c              profile=large    -> node=node-lqkss
+bench-large-mf7kf              profile=large    -> node=node-lqkss
+bench-large-b7zhd              profile=large    -> node=node-nht2k
+bench-large-j77tv              profile=large    -> node=node-8n2nk
+bench-large-8j64d              profile=large    -> node=node-lqkss
+bench-large-tng5j              profile=large    -> node=node-nht2k
+bench-large-gv8zv              profile=large    -> node=node-lqkss
+bench-large-cxwr4              profile=large    -> node=node-nht2k
+bench-xlarge-sgpwg             profile=xlarge   -> node=node-lqkss
+bench-xlarge-p95bw             profile=xlarge   -> node=node-nht2k
+bench-xlarge-sb6bv             profile=xlarge   -> node=node-lqkss
+bench-xlarge-rdjdb             profile=xlarge   -> node=node-8n2nk
+bench-xlarge-2hpzl             profile=xlarge   -> node=node-lqkss
+bench-xlarge-k8dbf             profile=xlarge   -> node=node-nht2k
+bench-xlarge-68zdz             profile=xlarge   -> node=node-lqkss
+bench-xlarge-48hnv             profile=xlarge   -> node=node-lqkss
+
+Готово: 40/40 подов запланировано.
+Результаты: results_memory/memtest_400m_results.csv
+Метрики балансировки: results_memory/memtest_400m_balance.json
+  CPU utilization std=0.0996 mean=0.601
+  Memory utilization std=0.0989 mean=0.5951
+
+real	0m30.817s
+user	0m0.161s
+sys	0m0.066s
+OOMKilled=false RestartCount=0

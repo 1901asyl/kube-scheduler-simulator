@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.012991865926298406,
+  "mem_util_stddev": 0.012991865926298406,
+  "cpu_util_mean": 0.4201388888888889,
+  "mem_util_mean": 0.4201388888888889,
+  "per_node": {
+    "node-4m58j": {
+      "cpu_util": 0.4166666666666667,
+      "mem_util": 0.4166666666666667
+    },
+    "node-8sbxl": {
+      "cpu_util": 0.40625,
+      "mem_util": 0.40625
+    },
+    "node-drnhz": {
+      "cpu_util": 0.4375,
+      "mem_util": 0.4375
+    }
+  }
+}

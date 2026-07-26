@@ -1,0 +1,20 @@
+{
+  "per_node": {
+    "node-4hkxb": {
+      "cpu_utilization": 0.4813,
+      "memory_utilization": 0.4766
+    },
+    "node-p4qb5": {
+      "cpu_utilization": 0.6833,
+      "memory_utilization": 0.6771
+    },
+    "node-whfjp": {
+      "cpu_utilization": 0.6594,
+      "memory_utilization": 0.6523
+    }
+  },
+  "cpu_utilization_std": 0.0901,
+  "memory_utilization_std": 0.0893,
+  "cpu_utilization_mean": 0.608,
+  "memory_utilization_mean": 0.602
+}

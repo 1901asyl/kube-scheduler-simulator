@@ -1,0 +1,20 @@
+{
+  "per_node": {
+    "node-46j5x": {
+      "cpu_utilization": 0.7219,
+      "memory_utilization": 0.7148
+    },
+    "node-h8pwq": {
+      "cpu_utilization": 0.6417,
+      "memory_utilization": 0.6354
+    },
+    "node-pcglp": {
+      "cpu_utilization": 0.4813,
+      "memory_utilization": 0.4766
+    }
+  },
+  "cpu_utilization_std": 0.1,
+  "memory_utilization_std": 0.0991,
+  "cpu_utilization_mean": 0.6149,
+  "memory_utilization_mean": 0.6089
+}

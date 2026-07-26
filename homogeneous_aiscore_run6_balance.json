@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.002598373185259722,
+  "mem_util_stddev": 0.0016239832407872977,
+  "cpu_util_mean": 0.9847222222222222,
+  "mem_util_mean": 0.9787326388888888,
+  "per_node": {
+    "node-54nf9": {
+      "cpu_util": 0.9875,
+      "mem_util": 0.98046875
+    },
+    "node-9hs7t": {
+      "cpu_util": 0.98125,
+      "mem_util": 0.9765625
+    },
+    "node-nh7gc": {
+      "cpu_util": 0.9854166666666667,
+      "mem_util": 0.9791666666666666
+    }
+  }
+}

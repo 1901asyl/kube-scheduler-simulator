@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.09955412751641969,
+  "mem_util_stddev": 0.0989411991745462,
+  "cpu_util_mean": 0.6010416666666667,
+  "mem_util_mean": 0.5950520833333334,
+  "per_node": {
+    "node-hngp7": {
+      "cpu_util": 0.48125,
+      "mem_util": 0.4765625
+    },
+    "node-mgvv6": {
+      "cpu_util": 0.725,
+      "mem_util": 0.71875
+    },
+    "node-sbfz7": {
+      "cpu_util": 0.596875,
+      "mem_util": 0.58984375
+    }
+  }
+}

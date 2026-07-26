@@ -1,0 +1,141 @@
+{
+  "config": {
+    "window_seconds": 300,
+    "sample_size": 40,
+    "min_pods": 40,
+    "max_pods": 300,
+    "z_trials": 10,
+    "seed": 42,
+    "out": "results_scenarios/oracle_slo_fresh_trace_test2.json"
+  },
+  "trials": [
+    {
+      "trial": 0,
+      "window_bucket": 1714,
+      "n_pods": 40,
+      "n_unique_cpu": 4,
+      "cpu_util_stddev": 0.0017704928866641805,
+      "mem_util_stddev": 0.001594719884624465,
+      "cpu_jains_fairness": 0.9999578093990923,
+      "mem_jains_fairness": 0.9960707269155207,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 1,
+      "window_bucket": 532,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.009820927516479843,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9996875976257419,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 2,
+      "window_bucket": 328,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.0009820927516479793,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9999982884962128,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 3,
+      "window_bucket": 1918,
+      "n_pods": 40,
+      "n_unique_cpu": 1,
+      "cpu_util_stddev": 0.025983731852596812,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 4,
+      "window_bucket": 895,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.009820927516479843,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9996248358656913,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 5,
+      "window_bucket": 824,
+      "n_pods": 40,
+      "n_unique_cpu": 1,
+      "cpu_util_stddev": 0.025983731852596812,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 6,
+      "window_bucket": 764,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.009820927516479843,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9998563837426397,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 7,
+      "window_bucket": 583,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.0,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 1.0,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 8,
+      "window_bucket": 1916,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.01093612204723863,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9993295702761736,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 9,
+      "window_bucket": 507,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.01873713550448897,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9994666479114285,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    }
+  ],
+  "cpu_summary": {
+    "mean": 0.011385608944467291,
+    "stddev_across_trials": 0.009044986163859363,
+    "p5": 0.0004419417382415907,
+    "p50": 0.009820927516479843,
+    "p95": 0.025983731852596812,
+    "min": 0.0,
+    "max": 0.025983731852596812
+  },
+  "mem_summary": {
+    "mean": 0.0008902644468167318,
+    "stddev_across_trials": 0.00023481847926924435,
+    "p5": 0.0008119916203936504,
+    "p50": 0.0008119916203936504,
+    "p95": 0.0012424921657205976,
+    "min": 0.0008119916203936504,
+    "max": 0.001594719884624465
+  }
+}

@@ -1,0 +1,51 @@
+bench-tiny-jgcrc               profile=tiny     -> node=node-2kpmg
+bench-tiny-mmdpw               profile=tiny     -> node=node-lcz74
+bench-tiny-prln2               profile=tiny     -> node=node-lcz74
+bench-tiny-4f5kf               profile=tiny     -> node=node-k94gl
+bench-tiny-prr5l               profile=tiny     -> node=node-2kpmg
+bench-tiny-lpfkp               profile=tiny     -> node=node-lcz74
+bench-tiny-djq6x               profile=tiny     -> node=node-2kpmg
+bench-tiny-m4492               profile=tiny     -> node=node-lcz74
+bench-small-j7bkb              profile=small    -> node=node-lcz74
+bench-small-9d7zc              profile=small    -> node=node-lcz74
+bench-small-fb4jx              profile=small    -> node=node-2kpmg
+bench-small-2fsdg              profile=small    -> node=node-lcz74
+bench-small-hs4pm              profile=small    -> node=node-k94gl
+bench-small-jwqm8              profile=small    -> node=node-2kpmg
+bench-small-mls8m              profile=small    -> node=node-lcz74
+bench-small-bd76f              profile=small    -> node=node-lcz74
+bench-medium-nqrxm             profile=medium   -> node=node-2kpmg
+bench-medium-k8xf4             profile=medium   -> node=node-lcz74
+bench-medium-q92td             profile=medium   -> node=node-k94gl
+bench-medium-6rjdq             profile=medium   -> node=node-lcz74
+bench-medium-f4vz8             profile=medium   -> node=node-2kpmg
+bench-medium-d7825             profile=medium   -> node=node-lcz74
+bench-medium-8c6jq             profile=medium   -> node=node-2kpmg
+bench-medium-tn26d             profile=medium   -> node=node-lcz74
+bench-large-k4jll              profile=large    -> node=node-lcz74
+bench-large-8kc5z              profile=large    -> node=node-2kpmg
+bench-large-6hctt              profile=large    -> node=node-k94gl
+bench-large-wmszb              profile=large    -> node=node-lcz74
+bench-large-kggvn              profile=large    -> node=node-2kpmg
+bench-large-l7hpk              profile=large    -> node=node-lcz74
+bench-large-4w5gz              profile=large    -> node=node-lcz74
+bench-large-l2pch              profile=large    -> node=node-2kpmg
+bench-xlarge-9lm5h             profile=xlarge   -> node=node-lcz74
+bench-xlarge-vsxcs             profile=xlarge   -> node=node-2kpmg
+bench-xlarge-jdwrk             profile=xlarge   -> node=node-lcz74
+bench-xlarge-h6z4w             profile=xlarge   -> node=node-k94gl
+bench-xlarge-gjp8c             profile=xlarge   -> node=node-lcz74
+bench-xlarge-rqn4z             profile=xlarge   -> node=node-2kpmg
+bench-xlarge-97xpw             profile=xlarge   -> node=node-lcz74
+bench-xlarge-knt7k             profile=xlarge   -> node=node-2kpmg
+
+Готово: 40/40 подов запланировано.
+Результаты: results_memory/memtest_150m_results.csv
+Метрики балансировки: results_memory/memtest_150m_balance.json
+  CPU utilization std=0.0959 mean=0.6132
+  Memory utilization std=0.0949 mean=0.6072
+
+real	0m31.286s
+user	0m0.166s
+sys	0m0.059s
+OOMKilled=false RestartCount=0

@@ -1,0 +1,20 @@
+{
+  "per_node": {
+    "node-8n2nk": {
+      "cpu_utilization": 0.4813,
+      "memory_utilization": 0.4766
+    },
+    "node-lqkss": {
+      "cpu_utilization": 0.725,
+      "memory_utilization": 0.7188
+    },
+    "node-nht2k": {
+      "cpu_utilization": 0.5969,
+      "memory_utilization": 0.5898
+    }
+  },
+  "cpu_utilization_std": 0.0996,
+  "memory_utilization_std": 0.0989,
+  "cpu_utilization_mean": 0.601,
+  "memory_utilization_mean": 0.5951
+}

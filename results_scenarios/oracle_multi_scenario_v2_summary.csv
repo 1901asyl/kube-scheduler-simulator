@@ -1,0 +1,4 @@
+scenario,nodes_used,total_cluster_cpu_m,placed,total_pods,stage1_status,stage2_status,stage3_status,stage4_status,min_max_utilization,sum_abs_deviation_cpu,sum_abs_deviation_mem,cpu_util_mean,cpu_util_stddev,mem_util_mean,mem_util_stddev,cpu_jains_fairness,mem_jains_fairness
+homogeneous,node-a;node-b;node-c,48000,40,40,Optimal,Optimal,Optimal,Optimal,0.4375,0.0347,0.0347,0.4201,0.013,0.4201,0.013,0.999,0.999
+heterogeneous,node-a;node-b;node-c,48000,40,40,Optimal,Optimal,Optimal,Optimal,0.6438,0.0035,0.0174,0.642,0.0013,0.6337,0.0065,1.0,0.9999
+post_failure_node-a,node-b;node-c,40000,40,40,Optimal,Optimal,Optimal,Optimal,0.7708,0.0021,0.0013,0.7698,0.001,0.7624,0.0007,1.0,1.0

@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.0,
+  "mem_util_stddev": 0.0,
+  "cpu_util_mean": 0.0,
+  "mem_util_mean": 0.0,
+  "per_node": {
+    "node-7tfdv": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-r52nz": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-wnxkd": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    }
+  }
+}

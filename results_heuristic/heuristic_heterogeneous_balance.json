@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.09484062126197834,
+  "mem_util_stddev": 0.09581501120645076,
+  "cpu_util_mean": 0.6670138888888889,
+  "mem_util_mean": 0.6610243055555555,
+  "per_node": {
+    "node-9qcdn": {
+      "cpu_util": 0.79375,
+      "mem_util": 0.7890625
+    },
+    "node-q2d6s": {
+      "cpu_util": 0.565625,
+      "mem_util": 0.55859375
+    },
+    "node-zw49r": {
+      "cpu_util": 0.6416666666666667,
+      "mem_util": 0.6354166666666666
+    }
+  }
+}

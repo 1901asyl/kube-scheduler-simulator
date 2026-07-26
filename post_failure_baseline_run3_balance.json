@@ -1,0 +1,16 @@
+{
+  "cpu_util_stddev": 0.00833333333333336,
+  "mem_util_stddev": 0.005208333333333315,
+  "cpu_util_mean": 0.9583333333333333,
+  "mem_util_mean": 0.9505208333333333,
+  "per_node": {
+    "node-6twzt": {
+      "cpu_util": 0.9666666666666667,
+      "mem_util": 0.9557291666666666
+    },
+    "node-7s57k": {
+      "cpu_util": 0.95,
+      "mem_util": 0.9453125
+    }
+  }
+}

@@ -1,0 +1,361 @@
+{
+  "config": {
+    "window_seconds": 300,
+    "sample_size": 40,
+    "min_pods": 40,
+    "max_pods": 300,
+    "z_trials": 30,
+    "seed": 42,
+    "out": "results_scenarios/oracle_slo_fresh_trace.json"
+  },
+  "trials": [
+    {
+      "trial": 0,
+      "window_bucket": 1714,
+      "n_pods": 40,
+      "n_unique_cpu": 4,
+      "cpu_util_stddev": 0.0009820927516479793,
+      "mem_util_stddev": 0.001227615939559979,
+      "cpu_jains_fairness": 0.9999859284744355,
+      "mem_jains_fairness": 0.9978546527219092,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 1,
+      "window_bucket": 532,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.012991865926298411,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9995911095534334,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 2,
+      "window_bucket": 328,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.0177049288666416,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.999477439453321,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 3,
+      "window_bucket": 1918,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.03255752269369736,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.998349362837534,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 4,
+      "window_bucket": 895,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.0,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 1.0,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 5,
+      "window_bucket": 824,
+      "n_pods": 40,
+      "n_unique_cpu": 1,
+      "cpu_util_stddev": 0.025983731852596812,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 6,
+      "window_bucket": 764,
+      "n_pods": 40,
+      "n_unique_cpu": 1,
+      "cpu_util_stddev": 0.025983731852596812,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 7,
+      "window_bucket": 583,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.012991865926298411,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9995911095534334,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 8,
+      "window_bucket": 1916,
+      "n_pods": 40,
+      "n_unique_cpu": 4,
+      "cpu_util_stddev": 0.0025983731852596724,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.999959783289382,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 9,
+      "window_bucket": 507,
+      "n_pods": 40,
+      "n_unique_cpu": 4,
+      "cpu_util_stddev": 0.002598373185259722,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9999884718441262,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 10,
+      "window_bucket": 1813,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.01191736270953508,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.99920002553399,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 11,
+      "window_bucket": 2231,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.009368567752244492,
+      "mem_util_stddev": 0.0029276774225763984,
+      "cpu_jains_fairness": 0.999862639747076,
+      "mem_jains_fairness": 0.9884861137470738,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 12,
+      "window_bucket": 1443,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.008838834764831865,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9997475703647609,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 13,
+      "window_bucket": 487,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.0,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 1.0,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 14,
+      "window_bucket": 1542,
+      "n_pods": 40,
+      "n_unique_cpu": 1,
+      "cpu_util_stddev": 0.025983731852596812,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 15,
+      "window_bucket": 1159,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.002598373185259692,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9999495936891298,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 16,
+      "window_bucket": 343,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.010253349347384318,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9998224585098571,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 17,
+      "window_bucket": 341,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.0,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 1.0,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 18,
+      "window_bucket": 493,
+      "n_pods": 40,
+      "n_unique_cpu": 4,
+      "cpu_util_stddev": 0.006440012844094268,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9999160344844421,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 19,
+      "window_bucket": 750,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.009820927516479817,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.999479979199168,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 20,
+      "window_bucket": 792,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.009820927516479817,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9995119570522206,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 21,
+      "window_bucket": 1330,
+      "n_pods": 40,
+      "n_unique_cpu": 5,
+      "cpu_util_stddev": 0.006821834272357139,
+      "mem_util_stddev": 0.001227615939559979,
+      "cpu_jains_fairness": 0.999915325084768,
+      "mem_jains_fairness": 0.9978546527219092,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 22,
+      "window_bucket": 1586,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.004910463758239896,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9999375838716725,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 23,
+      "window_bucket": 337,
+      "n_pods": 40,
+      "n_unique_cpu": 1,
+      "cpu_util_stddev": 0.012991865926298406,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434665,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 24,
+      "window_bucket": 1475,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.0,
+      "mem_util_stddev": 0.001227615939559979,
+      "cpu_jains_fairness": 1.0,
+      "mem_jains_fairness": 0.9978546527219092,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 25,
+      "window_bucket": 711,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.0,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 1.0,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 26,
+      "window_bucket": 1876,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.029723520220878777,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.998630964124086,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 27,
+      "window_bucket": 1730,
+      "n_pods": 40,
+      "n_unique_cpu": 3,
+      "cpu_util_stddev": 0.01786761156981749,
+      "mem_util_stddev": 0.0029276774225763984,
+      "cpu_jains_fairness": 0.9994899779118833,
+      "mem_jains_fairness": 0.9884861137470738,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 28,
+      "window_bucket": 1858,
+      "n_pods": 40,
+      "n_unique_cpu": 1,
+      "cpu_util_stddev": 0.007795119555779052,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9990446946434663,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    },
+    {
+      "trial": 29,
+      "window_bucket": 1152,
+      "n_pods": 40,
+      "n_unique_cpu": 2,
+      "cpu_util_stddev": 0.009820927516479843,
+      "mem_util_stddev": 0.0008119916203936504,
+      "cpu_jains_fairness": 0.9998563837426397,
+      "mem_jains_fairness": 0.9990446946434665,
+      "stage4_status": "Optimal"
+    }
+  ],
+  "cpu_summary": {
+    "mean": 0.010645530551635118,
+    "stddev_across_trials": 0.00931792816248771,
+    "p5": 0.0,
+    "p50": 0.009594747634362154,
+    "p95": 0.028040615455151883,
+    "min": 0.0,
+    "max": 0.03255752269369736
+  },
+  "mem_summary": {
+    "mean": 0.0009945997724557997,
+    "stddev_across_trials": 0.0005313539760265325,
+    "p5": 0.0008119916203936504,
+    "p50": 0.0008119916203936504,
+    "p95": 0.002162649755219005,
+    "min": 0.0008119916203936504,
+    "max": 0.0029276774225763984
+  }
+}

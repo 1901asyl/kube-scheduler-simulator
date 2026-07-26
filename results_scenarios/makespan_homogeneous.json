@@ -1,0 +1,183 @@
+{
+  "cluster_makespan_s": 20.0,
+  "per_node": {
+    "node-a": {
+      "makespan_s": 20.0,
+      "schedule": {
+        "bench-medium-m7h6z": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-swb7f": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-nzkd8": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-pp9xg": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-tj2bm": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-jmh7b": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-h72fs": {
+          "start_s": 0,
+          "completion_s": 20.0
+        }
+      },
+      "status": "Optimal"
+    },
+    "node-b": {
+      "makespan_s": 20.0,
+      "schedule": {
+        "bench-medium-qw4ck": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-7gw4r": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-kpdv7": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-dtxmn": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-7bmn8": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-h86mr": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-dgzn8": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-w55pl": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-qxf79": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-p8zhm": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-xvqcq": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-5qxv9": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-csxsw": {
+          "start_s": 0,
+          "completion_s": 20.0
+        }
+      },
+      "status": "Optimal"
+    },
+    "node-c": {
+      "makespan_s": 20.0,
+      "schedule": {
+        "bench-medium-v45w7": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-654q9": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-f4n7k": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-kthdz": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-8kwg9": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-xjdjj": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-kfljn": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-4ffs8": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-8stss": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-rgvcj": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-sz5x5": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-5pn9p": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-zkzrs": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-chl9h": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-98qxt": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-69drw": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-tm8z6": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-zcd54": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-k6dpb": {
+          "start_s": 0,
+          "completion_s": 20.0
+        },
+        "bench-medium-xfvpz": {
+          "start_s": 0,
+          "completion_s": 20.0
+        }
+      },
+      "status": "Optimal"
+    }
+  }
+}

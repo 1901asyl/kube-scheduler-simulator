@@ -1,0 +1,24 @@
+{
+  "cpu_util_stddev": 0.0,
+  "mem_util_stddev": 0.0,
+  "cpu_util_mean": 0.0,
+  "mem_util_mean": 0.0,
+  "per_node": {
+    "node-g5xhd": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-jmb8w": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-nh498": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    },
+    "node-zmgwl": {
+      "cpu_util": 0.0,
+      "mem_util": 0.0
+    }
+  }
+}

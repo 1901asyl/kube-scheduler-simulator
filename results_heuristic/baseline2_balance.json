@@ -1,0 +1,20 @@
+{
+  "cpu_util_stddev": 0.0454,
+  "mem_util_stddev": 0.0456,
+  "cpu_util_mean": 0.6417,
+  "mem_util_mean": 0.6354,
+  "per_node": {
+    "node-a7psvp": {
+      "cpu_util": 0.5812,
+      "mem_util": 0.5742
+    },
+    "node-brhssj": {
+      "cpu_util": 0.6531,
+      "mem_util": 0.6484
+    },
+    "node-c755f7": {
+      "cpu_util": 0.6906,
+      "mem_util": 0.6836
+    }
+  }
+}

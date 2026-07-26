@@ -1,0 +1,51 @@
+bench-tiny-dcrlt               profile=tiny     -> node=node-ldspz (57.5ms)
+bench-tiny-lxxw9               profile=tiny     -> node=node-ldspz (164.5ms)
+bench-tiny-6xhmz               profile=tiny     -> node=node-9qdg5 (163.3ms)
+bench-tiny-pkrxp               profile=tiny     -> node=node-9qdg5 (162.1ms)
+bench-tiny-brd22               profile=tiny     -> node=node-9qdg5 (162.9ms)
+bench-tiny-g4svq               profile=tiny     -> node=node-ldspz (163.1ms)
+bench-tiny-xhpdn               profile=tiny     -> node=node-s5lrp (162.9ms)
+bench-tiny-6cbw8               profile=tiny     -> node=node-ldspz (163.1ms)
+bench-small-5n8dp              profile=small    -> node=node-ldspz (165.1ms)
+bench-small-6vqtg              profile=small    -> node=node-9qdg5 (163.8ms)
+bench-small-fbqh8              profile=small    -> node=node-ldspz (165.6ms)
+bench-small-2n5vg              profile=small    -> node=node-9qdg5 (163.7ms)
+bench-small-kvbn6              profile=small    -> node=node-ldspz (164.6ms)
+bench-small-cdnks              profile=small    -> node=node-s5lrp (163.5ms)
+bench-small-hx8jp              profile=small    -> node=node-ldspz (166.8ms)
+bench-small-lbpjl              profile=small    -> node=node-9qdg5 (165.0ms)
+bench-medium-ck5bl             profile=medium   -> node=node-ldspz (164.4ms)
+bench-medium-hrl5w             profile=medium   -> node=node-ldspz (166.0ms)
+bench-medium-dfvvq             profile=medium   -> node=node-9qdg5 (163.8ms)
+bench-medium-8l4mz             profile=medium   -> node=node-s5lrp (164.3ms)
+bench-medium-8wsct             profile=medium   -> node=node-9qdg5 (162.9ms)
+bench-medium-snh69             profile=medium   -> node=node-ldspz (164.6ms)
+bench-medium-8jswq             profile=medium   -> node=node-ldspz (163.1ms)
+bench-medium-br2rx             profile=medium   -> node=node-9qdg5 (163.7ms)
+bench-large-8zfjn              profile=large    -> node=node-ldspz (164.4ms)
+bench-large-zwsts              profile=large    -> node=node-ldspz (164.0ms)
+bench-large-5tmhp              profile=large    -> node=node-9qdg5 (164.1ms)
+bench-large-srb6p              profile=large    -> node=node-s5lrp (164.5ms)
+bench-large-phh6p              profile=large    -> node=node-ldspz (162.6ms)
+bench-large-sz78f              profile=large    -> node=node-9qdg5 (163.8ms)
+bench-large-hpls6              profile=large    -> node=node-ldspz (164.2ms)
+bench-large-4hv6g              profile=large    -> node=node-ldspz (164.4ms)
+bench-xlarge-w6mr6             profile=xlarge   -> node=node-9qdg5 (161.4ms)
+bench-xlarge-hwk2r             profile=xlarge   -> node=node-ldspz (162.9ms)
+bench-xlarge-gcpg5             profile=xlarge   -> node=node-s5lrp (164.4ms)
+bench-xlarge-hv5hv             profile=xlarge   -> node=node-ldspz (164.0ms)
+bench-xlarge-hvz7p             profile=xlarge   -> node=node-9qdg5 (55.8ms)
+bench-xlarge-252qz             profile=xlarge   -> node=node-ldspz (163.1ms)
+bench-xlarge-xx5zp             profile=xlarge   -> node=node-9qdg5 (163.2ms)
+bench-xlarge-hcvzw             profile=xlarge   -> node=node-ldspz (164.4ms)
+
+Готово: 40/40 подов запланировано.
+Результаты: results_timing_http/timing_http_noop1_0ms_results.csv
+Per-pod scheduling latency: mean=158.54ms p95=166.03ms max=166.76ms
+Метрики балансировки: results_timing_http/timing_http_noop1_0ms_balance.json
+  CPU utilization std=0.0901 mean=0.6080
+  Memory utilization std=0.0893 mean=0.6020
+
+real	0m6.616s
+user	0m0.200s
+sys	0m0.070s

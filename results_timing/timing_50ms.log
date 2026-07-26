@@ -1,0 +1,51 @@
+bench-tiny-vt2bc               profile=tiny     -> node=node-mvrvx
+bench-tiny-57q4n               profile=tiny     -> node=node-blcl9
+bench-tiny-s68gs               profile=tiny     -> node=node-blcl9
+bench-tiny-9nrhp               profile=tiny     -> node=node-7bqm6
+bench-tiny-2dh78               profile=tiny     -> node=node-mvrvx
+bench-tiny-xpwxp               profile=tiny     -> node=node-mvrvx
+bench-tiny-7sz9v               profile=tiny     -> node=node-blcl9
+bench-tiny-vsdj6               profile=tiny     -> node=node-blcl9
+bench-small-6kxg6              profile=small    -> node=node-blcl9
+bench-small-v5gdt              profile=small    -> node=node-blcl9
+bench-small-2tzbv              profile=small    -> node=node-mvrvx
+bench-small-cm95n              profile=small    -> node=node-mvrvx
+bench-small-7pdhm              profile=small    -> node=node-7bqm6
+bench-small-4hb6v              profile=small    -> node=node-blcl9
+bench-small-dbn2w              profile=small    -> node=node-blcl9
+bench-small-wsc2m              profile=small    -> node=node-blcl9
+bench-medium-fswxl             profile=medium   -> node=node-blcl9
+bench-medium-jz7lm             profile=medium   -> node=node-mvrvx
+bench-medium-lrzxc             profile=medium   -> node=node-7bqm6
+bench-medium-wnm4c             profile=medium   -> node=node-mvrvx
+bench-medium-rvxkk             profile=medium   -> node=node-blcl9
+bench-medium-nrxsr             profile=medium   -> node=node-blcl9
+bench-medium-2wn4w             profile=medium   -> node=node-mvrvx
+bench-medium-cbxk5             profile=medium   -> node=node-blcl9
+bench-large-cznnr              profile=large    -> node=node-blcl9
+bench-large-fbf2m              profile=large    -> node=node-mvrvx
+bench-large-692zb              profile=large    -> node=node-blcl9
+bench-large-qs4p6              profile=large    -> node=node-7bqm6
+bench-large-4fhqb              profile=large    -> node=node-mvrvx
+bench-large-9742j              profile=large    -> node=node-blcl9
+bench-large-fklsz              profile=large    -> node=node-blcl9
+bench-large-k42wv              profile=large    -> node=node-mvrvx
+bench-xlarge-6wz8v             profile=xlarge   -> node=node-blcl9
+bench-xlarge-gdhkc             profile=xlarge   -> node=node-mvrvx
+bench-xlarge-wfln5             profile=xlarge   -> node=node-blcl9
+bench-xlarge-798z6             profile=xlarge   -> node=node-7bqm6
+bench-xlarge-ll9xb             profile=xlarge   -> node=node-blcl9
+bench-xlarge-wpqx8             profile=xlarge   -> node=node-mvrvx
+bench-xlarge-p6tvk             profile=xlarge   -> node=node-blcl9
+bench-xlarge-txlrm             profile=xlarge   -> node=node-mvrvx
+
+Готово: 40/40 подов запланировано.
+Результаты: results_timing/timing_50ms_results.csv
+Метрики балансировки: results_timing/timing_50ms_balance.json
+  CPU utilization std=0.0959 mean=0.6132
+  Memory utilization std=0.0949 mean=0.6072
+
+real	0m31.166s
+user	0m0.151s
+sys	0m0.066s
+Всего вызовов Score(): 120

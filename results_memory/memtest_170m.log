@@ -1,0 +1,51 @@
+bench-tiny-kcnfc               profile=tiny     -> node=node-7qv57
+bench-tiny-plvgd               profile=tiny     -> node=node-7qv57
+bench-tiny-trhpj               profile=tiny     -> node=node-pm9js
+bench-tiny-kpjd2               profile=tiny     -> node=node-7qv57
+bench-tiny-4g4rm               profile=tiny     -> node=node-lwpjf
+bench-tiny-wb9vt               profile=tiny     -> node=node-7qv57
+bench-tiny-xf75c               profile=tiny     -> node=node-pm9js
+bench-tiny-nvqhm               profile=tiny     -> node=node-pm9js
+bench-small-r5skg              profile=small    -> node=node-7qv57
+bench-small-l5mqh              profile=small    -> node=node-pm9js
+bench-small-5njps              profile=small    -> node=node-7qv57
+bench-small-pns2w              profile=small    -> node=node-pm9js
+bench-small-fsjtx              profile=small    -> node=node-7qv57
+bench-small-8d2nz              profile=small    -> node=node-lwpjf
+bench-small-hgqst              profile=small    -> node=node-7qv57
+bench-small-jll2z              profile=small    -> node=node-pm9js
+bench-medium-c9fjd             profile=medium   -> node=node-7qv57
+bench-medium-j6k5n             profile=medium   -> node=node-pm9js
+bench-medium-xlkrq             profile=medium   -> node=node-7qv57
+bench-medium-pfl4t             profile=medium   -> node=node-lwpjf
+bench-medium-4s58t             profile=medium   -> node=node-pm9js
+bench-medium-qn4vj             profile=medium   -> node=node-7qv57
+bench-medium-qnsxp             profile=medium   -> node=node-7qv57
+bench-medium-lvfns             profile=medium   -> node=node-pm9js
+bench-large-724fv              profile=large    -> node=node-7qv57
+bench-large-9894p              profile=large    -> node=node-7qv57
+bench-large-lhsjr              profile=large    -> node=node-pm9js
+bench-large-d2mhr              profile=large    -> node=node-lwpjf
+bench-large-fqtsk              profile=large    -> node=node-7qv57
+bench-large-kq2kk              profile=large    -> node=node-pm9js
+bench-large-qmmf9              profile=large    -> node=node-7qv57
+bench-large-zpbm4              profile=large    -> node=node-7qv57
+bench-xlarge-jzvhz             profile=xlarge   -> node=node-pm9js
+bench-xlarge-m6w7t             profile=xlarge   -> node=node-7qv57
+bench-xlarge-s4jnv             profile=xlarge   -> node=node-lwpjf
+bench-xlarge-cmfjr             profile=xlarge   -> node=node-7qv57
+bench-xlarge-rz47n             profile=xlarge   -> node=node-pm9js
+bench-xlarge-x2vqt             profile=xlarge   -> node=node-7qv57
+bench-xlarge-qbzv9             profile=xlarge   -> node=node-pm9js
+bench-xlarge-jdfz8             profile=xlarge   -> node=node-7qv57
+
+Готово: 40/40 подов запланировано.
+Результаты: results_memory/memtest_170m_results.csv
+Метрики балансировки: results_memory/memtest_170m_balance.json
+  CPU utilization std=0.0901 mean=0.608
+  Memory utilization std=0.0893 mean=0.602
+
+real	0m31.289s
+user	0m0.172s
+sys	0m0.053s
+OOMKilled=false RestartCount=0
