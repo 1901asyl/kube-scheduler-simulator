@@ -79,6 +79,12 @@ type AIScore struct {
 	// настроенный под быстрый ML-инференс. Общий клиент не трогаем, чтобы не
 	// изменить поведение уже проверенных /predict и /calibrate_confidence.
 	localityHTTPClient *http.Client
+
+	replicationURL        string
+	replicationMinNodes   int
+	pathNodes             map[string]map[string]bool
+	pathNodesMu           sync.Mutex
+	replicationHTTPClient *http.Client
 }
 
 
@@ -105,6 +111,18 @@ const confidenceStateKey = "AIScore/confidence"
 func (pl *AIScore) Name() string {
 	return Name
 }
+type replicationRequest struct {
+	Path     string `json:"path"`
+	Replicas int    `json:"replicas"`
+}
+
+type replicationResponse struct {
+	Path     string `json:"path"`
+	Replicas int    `json:"replicas"`
+	Success  bool   `json:"success"`
+	Message  string `json:"message"`
+}
+
 type localityResponse struct {
 	Path                string   `json:"path"`
 	Found               bool     `json:"found"`
@@ -294,22 +312,15 @@ func (pl *AIScore) callLocalityService(ctx context.Context, path string) (*local
 	return &lr, nil
 }
 
-// nodeMatchesLocality проверяет совпадение ноды с хостами, где уже
-// закэшированы данные. ВАЖНО (эмпирически обнаружено): в этом KWOK-based
-// симуляторе ноды НЕ имеют NodeInternalIP вообще — единственный доступный
-// адрес это Hostname=localhost, одинаковый у ВСЕХ нод (см. проверку через
-// GET /api/v1/nodes на simulator-cluster). Из-за этого сопоставление по IP
-// (как было бы естественно на настоящем многоузловом кластере) здесь
-// структурно невозможно и ничего не найдёт независимо от корректности
-// sidecar. Временное, специфичное для этого однохостового стенда решение:
-// раз все ноды физически представляют один и тот же хост (тот же, где
-// работает Alluxio), считаем bonus применимым к ЛЮБОЙ ноде, если sidecar
-// подтвердил наличие данных где-либо. Это НЕ имитирует реальную
-// multi-node locality-aware логику — честная оговорка для отчёта:
-// на многоузловом стенде потребуется реальное сопоставление (например,
-// через NodeInternalIP, если KWOK или реальный кластер его предоставляют,
-// либо через явный лейбл ноды, вручную сопоставленный с hostname worker'а
-// Alluxio).
+// nodeMatchesLocality проверяет, входит ли NodeInternalIP ноды в список
+// хостов, где уже закэшированы данные. Ранее в этом KWOK-стенде ноды,
+// созданные через kwokctl, не имели NodeInternalIP вообще (только
+// Hostname=localhost, одинаковый у всех) — это временно решалось
+// упрощением "бонус для любой ноды". По прецеденту Модуля 1 (создание
+// гетерогенных нод через прямой PUT .../status с явно заданными
+// allocatable/capacity) ноды для этого эксперимента создаются с явно
+// заданным status.addresses, включая NodeInternalIP — что делает реальное
+// сопоставление по IP снова содержательным и информативным.
 func nodeMatchesLocality(nodeInfo *framework.NodeInfo, lr *localityResponse) bool {
 	if lr == nil || !lr.Found {
 		return false
@@ -318,9 +329,73 @@ func nodeMatchesLocality(nodeInfo *framework.NodeInfo, lr *localityResponse) boo
 	if node == nil {
 		return false
 	}
-	// Однохостовый стенд: если данные найдены хоть где-то, все ноды
-	// симулятора представляют один и тот же физический хост.
-	return len(lr.Hosts) > 0
+	for _, addr := range node.Status.Addresses {
+		if addr.Type != v1.NodeInternalIP {
+			continue
+		}
+		for _, host := range lr.Hosts {
+			if addr.Address == host {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// callReplicationService просит sidecar установить минимальное число реплик
+// для указанного пути. Ошибка не должна ронять Reserve() — репликация это
+// оптимизация, а не обязательное условие для успешного размещения пода.
+func (pl *AIScore) callReplicationService(ctx context.Context, path string, replicas int) error {
+	if pl.replicationURL == "" || path == "" {
+		return nil
+	}
+
+	reqBody := replicationRequest{Path: path, Replicas: replicas}
+	data, err := json.Marshal(reqBody)
+	if err != nil {
+		return fmt.Errorf("marshal replication request: %w", err)
+	}
+
+	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, pl.replicationURL, bytes.NewReader(data))
+	if err != nil {
+		return fmt.Errorf("build replication request: %w", err)
+	}
+	httpReq.Header.Set("Content-Type", "application/json")
+
+	resp, err := pl.replicationHTTPClient.Do(httpReq)
+	if err != nil {
+		return fmt.Errorf("replication http call: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("replication sidecar returned status %d", resp.StatusCode)
+	}
+
+	var rr replicationResponse
+	if err := json.NewDecoder(resp.Body).Decode(&rr); err != nil {
+		return fmt.Errorf("decode replication response: %w", err)
+	}
+	if !rr.Success {
+		return fmt.Errorf("replication sidecar reported failure: %s", rr.Message)
+	}
+	return nil
+}
+
+// recordPodPlacement добавляет ноду в множество нод, на которые размещены
+// поды с данным data-path, и возвращает текущее число РАЗЛИЧНЫХ нод.
+func (pl *AIScore) recordPodPlacement(path, nodeName string) int {
+	pl.pathNodesMu.Lock()
+	defer pl.pathNodesMu.Unlock()
+
+	if pl.pathNodes == nil {
+		pl.pathNodes = make(map[string]map[string]bool)
+	}
+	if pl.pathNodes[path] == nil {
+		pl.pathNodes[path] = make(map[string]bool)
+	}
+	pl.pathNodes[path][nodeName] = true
+	return len(pl.pathNodes[path])
 }
 
 // callCalibrateService отправляет margin (разрыв между лучшим и вторым по
@@ -396,9 +471,39 @@ func (pl *AIScore) Filter(ctx context.Context, state *framework.CycleState,
 // точка для будущего расширения (например, оповещения ml-server о
 // предварительном занятии ресурсов, если понадобится устранить проблему
 // устаревших free_cpu/free_mem при высокой конкуренции подов в одном батче).
+// Reserve — помимо стандартного lifecycle-логирования, отслеживает
+// количество РАЗЛИЧНЫХ нод, на которые уже размещены поды с одним и тем же
+// data-path (Направление "уровень репликации" связки Модуль 1 <-> Модуль 2:
+// решения AIScore о размещении подов управляют репликацией данных в Alluxio,
+// а не отдельный независимый процесс). Если это число достигает
+// replicationMinNodes — просит sidecar увеличить минимальное число реплик.
+// Ошибка репликации не блокирует Reserve — это оптимизация, не обязательное
+// условие успешного размещения.
 func (pl *AIScore) Reserve(ctx context.Context, state *framework.CycleState,
 	p *v1.Pod, nodeName string) *framework.Status {
 	klog.Infof("AIScoreReserve pod=%s node=%s", p.Name, nodeName)
+
+	path, ok := p.Annotations[pl.localityAnnotationKey]
+	if !ok || path == "" || pl.replicationURL == "" {
+		return nil
+	}
+
+	distinctNodes := pl.recordPodPlacement(path, nodeName)
+	klog.Infof("AIScoreReplication pod=%s node=%s path=%s distinct_nodes=%d threshold=%d",
+		p.Name, nodeName, path, distinctNodes, pl.replicationMinNodes)
+
+	if distinctNodes < pl.replicationMinNodes {
+		return nil
+	}
+
+	if err := pl.callReplicationService(ctx, path, distinctNodes); err != nil {
+		klog.Warningf("AIScoreReplication failed: path=%s replicas=%d err=%v",
+			path, distinctNodes, err)
+		return nil
+	}
+
+	klog.Infof("AIScoreReplication applied: path=%s replicas=%d (triggered by pod=%s node=%s)",
+		path, distinctNodes, p.Name, nodeName)
 	return nil
 }
 
@@ -629,6 +734,19 @@ func New(ctx context.Context, _ runtime.Object, h framework.Handle) (framework.P
 	if localityAnnotationKey == "" {
 		localityAnnotationKey = "alluxio.io/data-path"
 	}
+
+	replicationURL := os.Getenv("ML_REPLICATION_URL")
+	// Пусто по умолчанию — репликация выключена, пока явно не задан URL.
+
+	replicationMinNodes := 2
+	if v := os.Getenv("ML_REPLICATION_MIN_NODES"); v != "" {
+		if parsed, err := strconv.Atoi(v); err == nil {
+			replicationMinNodes = parsed
+		} else {
+			klog.Warningf("AIScore: не удалось распарсить ML_REPLICATION_MIN_NODES=%q, используется %d",
+				v, replicationMinNodes)
+		}
+	}
 	permitWaitDuration := 3 * time.Second
 	if v := os.Getenv("ML_PERMIT_WAIT_SECONDS"); v != "" {
 		if parsed, err := strconv.Atoi(v); err == nil {
@@ -663,5 +781,9 @@ func New(ctx context.Context, _ runtime.Object, h framework.Handle) (framework.P
 		localityBonus:          localityBonus,
 		localityAnnotationKey:  localityAnnotationKey,
 		localityHTTPClient:     &http.Client{Timeout: 10 * time.Second},
+		replicationURL:         replicationURL,
+		replicationMinNodes:    replicationMinNodes,
+		pathNodes:              make(map[string]map[string]bool),
+		replicationHTTPClient:  &http.Client{Timeout: 10 * time.Second},
 	}, nil
 }

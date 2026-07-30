@@ -10,6 +10,12 @@ services:
       ml-server:
         condition: "service_started"
         required: false
+    environment:
+      - ML_LOCALITY_URL=http://192.168.122.23:6000/locality
+      - ML_LOCALITY_BONUS=15
+      - ML_REPLICATION_URL=http://192.168.122.23:6000/set_replication
+      - ML_REPLICATION_MIN_NODES=2
+      - ML_CONFIDENCE_THRESHOLD=0
   simulator-server:
     image: simulator-server
     depends_on:
